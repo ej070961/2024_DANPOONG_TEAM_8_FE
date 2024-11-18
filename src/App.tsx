@@ -8,6 +8,8 @@ import MissionPage from './pages/mission/MissionPage.tsx';
 import MissionCompleteDetailPage from './pages/mission/MissionCompleteDetailPage.tsx';
 import MissionCompletePage from './pages/mission/MissionCompletePage.tsx';
 import MissionRecordWritePage from './pages/mission/MissionRecordWritePage.tsx';
+import Onboarding from './pages/Onboarding/Onboarding';
+import Home from './pages/Home/Home';
 
 function App() {
   const router = createBrowserRouter([
@@ -38,6 +40,17 @@ function App() {
         {
           path: `${navigations.MISSION_COMPLETE_DETAIL}/:missionId`,
           element: <MissionCompleteDetailPage />,
+        },
+          path: navigations.ONBOARDING,
+          element: <Onboarding />,
+        },
+        {
+          path: navigations.ONBOARDING,
+          element: <Onboarding />,
+        },
+        {
+          path: navigations.HOME,
+          element: <Home />,
         },
       ],
     },
