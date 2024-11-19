@@ -41,7 +41,7 @@ const Container = styled.div`
   height: 68px;
   border-radius: 26px;
   background: rgba(255, 255, 255, 0.75);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
 
   display: flex;

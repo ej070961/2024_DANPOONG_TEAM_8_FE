@@ -26,6 +26,7 @@ const fonts = {
 
 // 컬러 정의
 const colors = {
+  yellow: '#FFDB57',
   orange300: '#ED9508',
   orange50: '#FFF6C7',
   blue300: '#3E78E2',
