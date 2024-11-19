@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import BackToolbar from '../../components/common/BackToolbar.tsx';
 import CustomButton from '../../components/common/CustomButton.tsx';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import ConfirmContent from '../../components/goal/ConfirmContent.tsx';
 import { navigations } from '../../constant/navigations.ts';
 
@@ -12,8 +12,16 @@ const GoalSelectConfirmPage = () => {
   const navigate = useNavigate();
   console.log(id, progressType);
 
+  const [searchParams] = useSearchParams();
+  const initStatus = searchParams.get('init') === 'true';
+
   const handleNavigate = () => {
-    navigate(navigations.GOAL_PRE_CHECK);
+    console.log(initStatus);
+    if (initStatus) {
+      navigate('/initial-setup?step=3');
+    } else {
+      navigate(navigations.GOAL_PRE_CHECK);
+    }
   };
   return (
     <MissionCompletionContainer>

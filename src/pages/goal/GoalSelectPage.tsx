@@ -9,7 +9,7 @@ const GoalSelectPage = () => {
       <BackToolbar />
       <ContentContainer>
         <Description />
-        <GoalList enabled={true} />
+        <GoalList enabled={true} init={false} />
       </ContentContainer>
     </GoalSelectContainer>
   );

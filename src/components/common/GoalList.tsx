@@ -35,13 +35,16 @@ const goalList = [
 
 interface GoalListProps {
   enabled: boolean;
+  init: boolean;
 }
 
-const GoalList = ({ enabled }: GoalListProps) => {
+const GoalList = ({ enabled, init }: GoalListProps) => {
   const navigate = useNavigate();
   const handleNavigate = (id: number) => {
     const goal = goalList.find((goal) => goal.id === id);
-    navigate('/goal/confirm', { state: { goal } });
+    init
+      ? navigate('/goal/confirm?init=true', { state: { goal } })
+      : navigate('/goal/confirm?init=false', { state: { goal } });
   };
 
   return (
