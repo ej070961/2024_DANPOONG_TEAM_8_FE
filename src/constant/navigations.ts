@@ -11,4 +11,5 @@ export const navigations = {
   GOAL_PRE_CHECK: '/goal/pre-check',
   ONBOARDING: '/onboarding',
   HOME: '/home',
+  INITIALSETUP: '/initial-setup',
 };

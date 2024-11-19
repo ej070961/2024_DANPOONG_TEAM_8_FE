@@ -13,6 +13,7 @@ import Home from './pages/Home/Home';
 import GoalSelectConfirmPage from './pages/goal/GoalSelectConfirmPage.tsx';
 import GoalSelectPage from './pages/goal/GoalSelectPage.tsx';
 import GoalPreCheckPage from './pages/goal/GoalPreCheckPage.tsx';
+import InitialSetup from './pages/InitialSetup/InitialSetup.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -61,12 +62,12 @@ function App() {
           element: <Onboarding />,
         },
         {
-          path: navigations.ONBOARDING,
-          element: <Onboarding />,
-        },
-        {
           path: navigations.HOME,
           element: <Home />,
+        },
+        {
+          path: navigations.INITIALSETUP,
+          element: <InitialSetup />,
         },
       ],
     },
