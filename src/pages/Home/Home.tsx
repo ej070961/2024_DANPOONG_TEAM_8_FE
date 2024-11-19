@@ -7,15 +7,22 @@ import ChatIntroSvg from '../../assets/svg/chat-intro.svg?react';
 import StarSvg from '../../assets/svg/star.svg?react';
 import PolygonSvg from '../../assets/svg/polygon.svg?react';
 import Chick from '../../assets/images/chick.png';
+import { useNavigate } from 'react-router-dom';
+import { navigations } from '../../constant/navigations.ts';
 
 function Home() {
+  const navigation = useNavigate()
+  const handleNavigate = () => {
+    navigation(navigations.CHAT)
+  }
+
   return (
     <Wrapper>
       <ContentContainer>
         {/* 미션관리, 챗봇 버튼 영역 */}
         <HeaderSection>
           <MissionInfo />
-          <ChatBtn>
+          <ChatBtn onClick={handleNavigate}>
             <ChatIcon />
           </ChatBtn>
           <ChatIntroMsg />
@@ -55,7 +62,7 @@ const ContentContainer = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 11px 16px 110px; 16px;
+    padding: 11px 16px 110px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
