@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import ArrowLeftIcon from '../../assets/icon/arrow-left';
+import { useNavigate } from 'react-router-dom';
 
 function Header({ step }: { step: number }) {
+  const navigate = useNavigate();
   return (
     <Container>
-      <ArrowLeftIcon color={step <= 2 ? '#18181B' : '#FFFFFF'} />
+      <button onClick={() => navigate(-1)}>
+        <ArrowLeftIcon color={step <= 2 ? '#18181B' : '#FFFFFF'} />
+      </button>
       <ProgressContainer>
         <ActiveBox position={step <= 1 ? 0 : (step - 1) / 3} />
       </ProgressContainer>
@@ -20,6 +24,7 @@ const Container = styled.header`
   align-items: center;
   width: 100%;
   height: 56px;
+  max-width: 480px;
 
   .icon-wrapper {
     display: absolute;
