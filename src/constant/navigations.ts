@@ -13,4 +13,5 @@ export const navigations = {
   HOME: '/home',
   CHAT: '/chat',
   INITIALSETUP: '/initial-setup',
+  SUPPORT: '/support',
 };
