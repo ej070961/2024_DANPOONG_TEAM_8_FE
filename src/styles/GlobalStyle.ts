@@ -16,8 +16,11 @@ ${reset}
   cursor: pointer;
   padding: 0;
   margin: 0;
+  background: none;
   &:hover{
+   border: none;
     outline: none;
+    border-color: none;
   }
 
   &:focus{
