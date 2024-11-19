@@ -8,4 +8,5 @@ export const navigations = {
   MISSION_COMPLETE: '/mission/complete',
   ONBOARDING: '/onboarding',
   HOME: '/home',
+  INITIALSETUP: '/initial-setup',
 };

@@ -10,6 +10,7 @@ import MissionCompletePage from './pages/mission/MissionCompletePage.tsx';
 import MissionRecordWritePage from './pages/mission/MissionRecordWritePage.tsx';
 import Onboarding from './pages/Onboarding/Onboarding';
 import Home from './pages/Home/Home';
+import InitialSetup from './pages/InitialSetup/InitialSetup.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -46,12 +47,12 @@ function App() {
           element: <Onboarding />,
         },
         {
-          path: navigations.ONBOARDING,
-          element: <Onboarding />,
-        },
-        {
           path: navigations.HOME,
           element: <Home />,
+        },
+        {
+          path: navigations.INITIALSETUP,
+          element: <InitialSetup />,
         },
       ],
     },
