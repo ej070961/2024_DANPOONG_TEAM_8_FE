@@ -10,6 +10,9 @@ import MissionCompletePage from './pages/mission/MissionCompletePage.tsx';
 import MissionRecordWritePage from './pages/mission/MissionRecordWritePage.tsx';
 import Onboarding from './pages/Onboarding/Onboarding';
 import Home from './pages/Home/Home';
+import GoalSelectConfirmPage from './pages/goal/GoalSelectConfirmPage.tsx';
+import GoalSelectPage from './pages/goal/GoalSelectPage.tsx';
+import GoalPreCheckPage from './pages/goal/GoalPreCheckPage.tsx';
 import InitialSetup from './pages/InitialSetup/InitialSetup.tsx';
 
 function App() {
@@ -41,6 +44,18 @@ function App() {
         {
           path: `${navigations.MISSION_COMPLETE_DETAIL}/:missionId`,
           element: <MissionCompleteDetailPage />,
+        },
+        {
+          path: navigations.GOAL,
+          element: <GoalSelectPage />,
+        },
+        {
+          path: navigations.GOAL_CONFIRM,
+          element: <GoalSelectConfirmPage />,
+        },
+        {
+          path: navigations.GOAL_PRE_CHECK,
+          element: <GoalPreCheckPage />,
         },
         {
           path: navigations.ONBOARDING,
