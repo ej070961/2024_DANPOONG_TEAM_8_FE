@@ -3,7 +3,8 @@ import washer from '../../assets/images/washer.png';
 import door from '../../assets/images/door.png';
 import money from '../../assets/images/money.png';
 import clean from '../../assets/images/clean.png';
-import DoneCard from './DoneCard.tsx';
+import DoneCard from '../Common/DoneCard.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const goalList = [
   {
@@ -37,11 +38,16 @@ interface GoalListProps {
 }
 
 const GoalList = ({ enabled }: GoalListProps) => {
+  const navigate = useNavigate();
+  const handleNavigate = (id: number) => {
+    const goal = goalList.find((goal) => goal.id === id);
+    navigate('/goal/confirm', { state: { goal } });
+  };
 
   return (
     <GoalListContainer>
       {goalList.map((goal) => (
-        <GoalContainer key={goal.id} onClick={enabled ? () => /*todo*/undefined : undefined}>
+        <GoalContainer key={goal.id} onClick={enabled ? () => handleNavigate(goal.id) : undefined}>
           {goal.progressType !== '진행전' ? (
             <DoneCardWrapper>
               <DoneCard label={goal.progressType} />
