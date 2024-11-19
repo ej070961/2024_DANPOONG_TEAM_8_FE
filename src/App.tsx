@@ -14,6 +14,7 @@ import GoalSelectConfirmPage from './pages/goal/GoalSelectConfirmPage.tsx';
 import GoalSelectPage from './pages/goal/GoalSelectPage.tsx';
 import GoalPreCheckPage from './pages/goal/GoalPreCheckPage.tsx';
 import InitialSetup from './pages/InitialSetup/InitialSetup.tsx';
+import ChatbotPage from './pages/chat/ChatbotPage.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -64,6 +65,10 @@ function App() {
         {
           path: navigations.HOME,
           element: <Home />,
+        },
+        {
+          path: navigations.CHAT,
+          element: <ChatbotPage />,
         },
         {
           path: navigations.INITIALSETUP,
