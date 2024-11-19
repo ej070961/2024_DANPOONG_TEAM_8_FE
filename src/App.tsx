@@ -41,6 +41,7 @@ function App() {
           path: `${navigations.MISSION_COMPLETE_DETAIL}/:missionId`,
           element: <MissionCompleteDetailPage />,
         },
+        {
           path: navigations.ONBOARDING,
           element: <Onboarding />,
         },
