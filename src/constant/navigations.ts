@@ -14,4 +14,5 @@ export const navigations = {
   CHAT: '/chat',
   INITIALSETUP: '/initial-setup',
   SUPPORT: '/support',
+  AUTH: '/auth',
 };

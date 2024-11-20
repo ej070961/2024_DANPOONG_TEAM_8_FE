@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import KakaoIcon from '../../assets/icon/kakao-icon';
+import { kakaoLogin } from '../../apis/user';
 function KaKaoButton() {
+  const handleLogin = async () => {
+    const res = await kakaoLogin();
+    window.location.href = res.location;
+  };
   return (
-    <Container>
+    <Container onClick={handleLogin}>
       <KakaoIcon />
       카카오로 로그인하기
     </Container>
