@@ -40,9 +40,10 @@ const RecordWriteForm = () => {
 
   return (
     <>
+      <MissionTitle>3일 동안의 식단 작성하기</MissionTitle>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+        style={{ height: '100%', display: 'flex', flexDirection: 'column', marginTop: '30px' }}
       >
         <InputContainer>
           <RecordInput
@@ -76,11 +77,17 @@ const InputContainer = styled.div`
   flex-direction: column;
   padding: 0 16px;
   gap: 17px;
-  margin-top: 19px;
 `;
 
 const ButtonContainer = styled.div`
   width: 100%;
   margin-bottom: 32px;
   padding: 0 16px 0 16px;
+`;
+
+const MissionTitle = styled.span`
+  margin-top: 6px;
+  margin-left: 24px;
+  font: ${({ theme }) => theme.fonts.heading_sb_22px};
+  color: ${({ theme }) => theme.colors.gray900};
 `;
