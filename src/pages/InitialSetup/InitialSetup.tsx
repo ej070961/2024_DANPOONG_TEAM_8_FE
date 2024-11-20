@@ -12,9 +12,7 @@ function InitialSetup() {
     <>
       {step === '0' && <Step0 />}
       {step === '1' && <Step1 />}
-
       {step === '2' && <Step2 />}
-
       {step === '3' && <Step3 />}
     </>
   );

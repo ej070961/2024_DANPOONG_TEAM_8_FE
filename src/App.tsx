@@ -16,6 +16,7 @@ import GoalPreCheckPage from './pages/goal/GoalPreCheckPage.tsx';
 import InitialSetup from './pages/InitialSetup/InitialSetup.tsx';
 import ChatbotPage from './pages/chat/ChatbotPage.tsx';
 import SupportPage from './pages/support/SupportPage.tsx';
+import Auth from './pages/Auth/Auth.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -78,6 +79,10 @@ function App() {
         {
           path: navigations.SUPPORT,
           element: <SupportPage />,
+        },
+        {
+          path: navigations.AUTH,
+          element: <Auth />,
         },
       ],
     },
