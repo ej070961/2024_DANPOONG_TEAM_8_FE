@@ -2,9 +2,13 @@
 import styled from 'styled-components';
 import Header from '../../components/InitialSetup/Header';
 import { useState } from 'react';
-function Step0() {
-  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
+import Loader from '../../components/Common/Loader';
+import Slime2 from '../../assets/images/slime2.png';
+import { useNavigate } from 'react-router-dom';
+function Step0({ nickname }: { nickname: string }) {
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
   const characters = [
     {
       id: 'CHICK',
@@ -28,22 +32,29 @@ function Step0() {
     },
   ];
 
+  const handleClick = (id: string) => {
+    setIsLoading(true);
+
+    // 2초 후 step1으로 이동
+    setTimeout(() => {
+      navigate('/initial-setup?step=1', {
+        state: {
+          characterType: id,
+        },
+      });
+    }, 2000);
+  };
+
   return (
     <Wrapper>
       <Header step={0} />
       {!isLoading ? (
         <ContentContainer>
-          <p className='title'>단풍님은 평소에 어떤 사람인가요?</p>
+          <p className='title'>{`${nickname}님은 평소에 \n어떤 사람인가요?`}</p>
           <span className='desc'>선택지에 따라 함께 할 버디 캐릭터가 달라져요!</span>
           <ButtonList>
             {characters.map((item, index) => (
-              <ButtonContainer
-                key={index}
-                onClick={() => {
-                  setSelectedCharacter(item.id);
-                  setIsLoading(true);
-                }}
-              >
+              <ButtonContainer key={index} onClick={() => handleClick(item.id)}>
                 <span>{item.character}</span>
                 <span>{item.content}</span>
               </ButtonContainer>
@@ -53,6 +64,10 @@ function Step0() {
       ) : (
         <ContentContainer style={{ justifyContent: 'space-between' }}>
           <p className='loader-text'>{`단풍님과 어울리는\n버디를 생성해드릴게요!`}</p>
+          <div style={{ width: '100%', height: '44px' }} />
+          <Loader />
+          <img src={Slime2} width={'170px'} />
+          <div style={{ width: '100%', height: '44px' }} />
           <p className='loader-text'>{`잠시만 기다려주세요`}</p>
         </ContentContainer>
       )}
@@ -80,9 +95,9 @@ const ContentContainer = styled.div`
   margin-top: 56px;
 
   .title {
-    width: 170px;
-    ${({ theme }) => theme.fonts.heading_sb_24px}
-    color:${({ theme }) => theme.colors.gray900}
+    ${({ theme }) => theme.fonts.heading_sb_24px};
+    color: ${({ theme }) => theme.colors.gray900};
+    white-space: pre-line; /* 줄바꿈을 반영 */
   }
 
   .desc {
@@ -96,6 +111,9 @@ const ContentContainer = styled.div`
     margin: auto;
     white-space: pre-line; /* 줄바꿈을 반영 */
     text-align: center; /* 중앙 정렬 */
+  }
+  > img {
+    margin: auto;
   }
 `;
 

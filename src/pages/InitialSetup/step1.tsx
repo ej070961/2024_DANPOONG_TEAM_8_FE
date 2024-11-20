@@ -4,8 +4,24 @@ import Header from '../../components/InitialSetup/Header';
 import EggPng from '../../assets/images/egg.png';
 import Button from '../../components/Common/Button';
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { createCharacter } from '../../apis/character';
+import { useAuthStore } from '../../store/useAuthStore';
 function Step1() {
   const [name, setName] = useState<string>('');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { characterType } = location.state;
+  console.log(characterType);
+
+  const { accessToken } = useAuthStore();
+
+  const handleSubmit = async () => {
+    const res = await createCharacter(accessToken!, characterType, name);
+    if (res) {
+      navigate('/initial-setup?step=2');
+    }
+  };
   return (
     <Wrapper>
       <Header step={1} />
@@ -16,7 +32,7 @@ function Step1() {
         <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
       </ContentContainer>
 
-      <Button text='이렇게 할게요!' onClick={() => console.log('클릭')} disabled={name === ''} />
+      <Button text='이렇게 할게요!' onClick={handleSubmit} disabled={name === ''} />
     </Wrapper>
   );
 }

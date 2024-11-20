@@ -23,6 +23,7 @@ function Auth() {
         useAuthStore.setState({ accessToken: accessToken, refreshToken: refreshToken });
         Login();
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        console.log(nickname);
 
         if (hasCharacter === 'true') {
           navigate(navigations.HOME);
