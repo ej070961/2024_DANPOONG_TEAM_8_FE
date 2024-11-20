@@ -5,7 +5,7 @@ import RecordWriteForm from '../../components/mission/record/RecordWriteForm.tsx
 const MissionRecordWritePage = () => {
   return (
     <MissionRecordWriteContainer>
-      <BackToolbar title='3일간의 식단 기록하기' />
+      <BackToolbar title='수행일지' />
       <RecordWriteForm />
     </MissionRecordWriteContainer>
   );

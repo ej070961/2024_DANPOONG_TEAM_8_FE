@@ -3,23 +3,56 @@ import HomeIcon from '../../assets/icon/home-icon';
 import MissionIcon from '../../assets/icon/misson-icon';
 import MyIcon from '../../assets/icon/my-icon';
 import PolicyIcon from '../../assets/icon/policy-icon';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { navigations } from '../../constant/navigations.ts';
+import theme from '../../styles/theme.ts';
+
 function NavBar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <Wrapper>
       <Container>
-        <MenuBtn $active={false}>
-          <HomeIcon color={'#a1a1aa'} />홈
+        <MenuBtn
+          $active={location.pathname === navigations.HOME}
+          onClick={() => navigate(navigations.HOME, { replace: true })}
+        >
+          <HomeIcon
+            color={
+              location.pathname === navigations.HOME ? theme.colors.primary : theme.colors.gray400
+            }
+          />
+          홈
         </MenuBtn>
-        <MenuBtn $active={false}>
-          <MissionIcon color={'#a1a1aa'} />
+        <MenuBtn
+          $active={location.pathname === navigations.MISSION}
+          onClick={() => navigate(navigations.MISSION, { replace: true })}
+        >
+          <MissionIcon
+            color={
+              location.pathname === navigations.MISSION
+                ? theme.colors.primary
+                : theme.colors.gray400
+            }
+          />
           미션
         </MenuBtn>
-        <MenuBtn $active={false}>
-          <PolicyIcon color={'#a1a1aa'} />
+        <MenuBtn
+          $active={location.pathname === navigations.SUPPORT}
+          onClick={() => navigate(navigations.SUPPORT, { replace: true })}
+        >
+          <PolicyIcon
+            color={
+              location.pathname === navigations.SUPPORT
+                ? theme.colors.primary
+                : theme.colors.gray400
+            }
+          />
           지원제도
         </MenuBtn>
         <MenuBtn $active={false}>
-          <MyIcon color={'#a1a1aa'} />
+          <MyIcon color={theme.colors.gray400} />
           마이
         </MenuBtn>
       </Container>
