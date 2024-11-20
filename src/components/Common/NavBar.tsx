@@ -3,18 +3,22 @@ import HomeIcon from '../../assets/icon/home-icon';
 import MissionIcon from '../../assets/icon/misson-icon';
 import MyIcon from '../../assets/icon/my-icon';
 import PolicyIcon from '../../assets/icon/policy-icon';
+import { useNavigate } from 'react-router-dom';
+import { navigations } from '../../constant/navigations.ts';
 function NavBar() {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Container>
-        <MenuBtn $active={false}>
+        <MenuBtn $active={false} onClick={() => navigate(navigations.HOME)}>
           <HomeIcon color={'#a1a1aa'} />홈
         </MenuBtn>
-        <MenuBtn $active={false}>
+        <MenuBtn $active={false} onClick={() => navigate(navigations.MISSION)}>
           <MissionIcon color={'#a1a1aa'} />
           미션
         </MenuBtn>
-        <MenuBtn $active={false}>
+        <MenuBtn $active={false} onClick={() => navigate(navigations.SUPPORT)}>
           <PolicyIcon color={'#a1a1aa'} />
           지원제도
         </MenuBtn>
