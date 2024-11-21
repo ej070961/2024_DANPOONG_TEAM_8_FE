@@ -1,3 +1,5 @@
+import { OnGoingMission } from './mission.ts';
+
 export interface Character {
   id: number;
   characterType: string;
@@ -5,16 +7,9 @@ export interface Character {
   level: number;
 }
 
-export interface Mission {
-  id: number;
-  missionName: string;
-  areaName: string;
-  isCompleted: boolean;
-}
-
-export interface UserMissionRes {
+export interface UserHomeRes {
   member_nickname: string;
   missionProPer: number;
   character: Character;
-  mission: Mission;
+  mission: OnGoingMission;
 }

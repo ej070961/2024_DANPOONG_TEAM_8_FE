@@ -25,6 +25,7 @@ const MissionList = ({ type }: MissionListProps) => {
           missionType={AreaType[mission.areaName]}
           missionName={mission.missionName}
           isComplete={mission.completed}
+          mission={type === 'onGoing' ? mission as OnGoingMission : undefined}
         />
       ))}
       {data?.length === 0 && (

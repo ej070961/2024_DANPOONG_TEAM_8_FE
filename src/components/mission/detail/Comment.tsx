@@ -26,7 +26,7 @@ const CommentContainer = styled.div`
   padding: 36px 18px 30px 18px;
   border: none;
   border-radius: 28px;
-  background-color: ${({ theme }) => theme.colors.gray50};
+  background-color: ${({ theme }) => theme.colors.gray100};
 `;
 
 const Tag = styled.span`
