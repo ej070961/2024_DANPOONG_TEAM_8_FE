@@ -5,6 +5,9 @@ import money from '../../assets/images/money.png';
 import clean from '../../assets/images/clean.png';
 import DoneCard from '../Common/DoneCard.tsx';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getCompleteArea } from '../../apis/area.ts';
+import Loading from './Loading.tsx';
 
 const goalList = [
   {
@@ -36,11 +39,14 @@ const goalList = [
 interface GoalListProps {
   enabled: boolean;
   init: boolean;
-  completeAreaTypes: string[];
   currentAreaType?: string;
 }
 
-const GoalList = ({ enabled, init, completeAreaTypes, currentAreaType }: GoalListProps) => {
+const GoalList = ({ enabled, init, currentAreaType }: GoalListProps) => {
+  const { data, isPending } = useQuery({
+    queryKey: ['getCompleteArea'],
+    queryFn: () => getCompleteArea(),
+  });
   const navigate = useNavigate();
   const handleNavigate = (id: number) => {
     const goal = goalList.find((goal) => goal.id === id);
@@ -49,11 +55,15 @@ const GoalList = ({ enabled, init, completeAreaTypes, currentAreaType }: GoalLis
       : navigate('/goal/confirm?init=false', { state: { goal } });
   };
 
+  if (isPending) {
+    return <Loading />;
+  }
+
   return (
     <GoalListContainer>
       {goalList.map((goal) => {
-        const isCompleted = completeAreaTypes.find((name) => name === goal.type); // 완료된 영역인지 확인
-        const isCurrent = currentAreaType === goal.type; // 현재 영역인지 확인
+        const isCompleted = data?.find((name) => name === goal.type);
+        const isCurrent = currentAreaType === goal.type;
 
         return (
           <GoalContainer
@@ -64,7 +74,7 @@ const GoalList = ({ enabled, init, completeAreaTypes, currentAreaType }: GoalLis
               <DoneCardWrapper>
                 <DoneCard label={'완료'} />
               </DoneCardWrapper>
-            ) : isCurrent ? ( // currentAreaType과 goal.type이 같으면
+            ) : isCurrent ? (
               <DoneCardWrapper>
                 <DoneCard label={'진행중'} />
               </DoneCardWrapper>

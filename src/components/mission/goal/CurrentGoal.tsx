@@ -34,7 +34,6 @@ const CurrentGoal = () => {
         enabled={false}
         init={false}
         currentAreaType='DAILY_LIFE'
-        completeAreaTypes={data!!.completeAreaTypes}
       />
     </>
   );
