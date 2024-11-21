@@ -9,10 +9,12 @@ type AuthStore = {
   accessToken: string | null;
   refreshToken: string | null;
   nickname: string | null;
+  kakaoId: string | null;
 
   setAccessToken: (accessToken: string) => void;
   setRefreshToken: (refreshToken: string) => void;
   setNickname: (nickname: string) => void;
+  setKakaoId: (kakaoId: string) => void;
 };
 
 export const useAuthStore = create<AuthStore>()(
@@ -28,9 +30,11 @@ export const useAuthStore = create<AuthStore>()(
       accessToken: '',
       refreshToken: '',
       nickname: '',
+      kakaoId: '',
       setAccessToken: (accessToken) => set({ accessToken }),
       setRefreshToken: (refreshToken) => set({ refreshToken }),
       setNickname: (nickname) => set({ nickname }),
+      setKakaoId: (kakaoId) => set({ kakaoId }),
     }),
     {
       name: 'user-storage',

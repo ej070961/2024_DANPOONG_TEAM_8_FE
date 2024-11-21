@@ -20,7 +20,7 @@ function Auth() {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
-        useAuthStore.setState({ accessToken: accessToken, refreshToken: refreshToken });
+        useAuthStore.setState({ accessToken: accessToken, refreshToken: refreshToken, kakaoId: kakaoId });
         Login();
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
         console.log(nickname);
