@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations.ts';
 import CardButton from '../Common/CardButton.tsx';
+import GuideModal from './GuideModal.tsx';
+import { useState } from 'react';
+import { OnGoingMission } from '../../@type/mission.ts';
 
 interface MissionProps {
   id: number;
@@ -9,10 +12,21 @@ interface MissionProps {
   missionName: string;
   isComplete: boolean;
   isHome?: boolean;
+  mission: OnGoingMission | undefined;
 }
 
-const MissionCard = ({ id, missionType, missionName, isComplete, isHome }: MissionProps) => {
+const MissionCard = ({
+  id,
+  missionType,
+  missionName,
+  isComplete,
+  isHome,
+  mission,
+}: MissionProps) => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const label = isComplete ? '완료' : '기록하기';
   const path = isComplete ? navigations.MISSION_COMPLETE_DETAIL : navigations.MISSION_RECORD_WRITE;
@@ -21,7 +35,8 @@ const MissionCard = ({ id, missionType, missionName, isComplete, isHome }: Missi
     navigate(`${path}/${id}`);
   };
   return (
-    <MissionContainer onClick={handleNavigate}>
+    <MissionContainer onClick={handleOpen}>
+      <GuideModal open={isComplete ? false : open} handleClose={handleClose} mission={mission!!} />
       <MissionType>{missionType}</MissionType>
       <MissionTitle>{missionName}</MissionTitle>
       <ButtonContainer>

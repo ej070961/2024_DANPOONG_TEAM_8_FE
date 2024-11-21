@@ -72,13 +72,16 @@ function Home() {
           <button className='name-wrapper'>{character?.characterName}</button>
         </CharacterSection>
         <MissionContainer>
-          <MissionCard
-            id={mission.id}
-            missionType={AreaType[mission.areaName]}
-            missionName={mission.missionName}
-            isComplete={mission.isCompleted}
-            isHome={true}
-          />
+          {mission && (
+            <MissionCard
+              id={mission.id}
+              missionType={AreaType[mission.areaName]}
+              missionName={mission.missionName}
+              isComplete={mission.completed}
+              isHome={true}
+              mission={mission}
+            />
+          )}
         </MissionContainer>
       </ContentContainer>
       <NavBar />
