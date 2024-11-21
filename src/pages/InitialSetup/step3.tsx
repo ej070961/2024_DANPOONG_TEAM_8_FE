@@ -3,14 +3,17 @@ import styled from 'styled-components';
 import Header from '../../components/InitialSetup/Header';
 import CheckGuide from '../../components/goal/CheckGuide';
 import CheckCardList from '../../components/goal/CheckCardList';
+import { useLocation } from 'react-router-dom';
 function Step3() {
+  const location = useLocation();
+  const { type, id } = location.state;
   return (
     <Wrapper>
       <Header step={3} />
       <GuideContainer>
         <CheckGuide />
       </GuideContainer>
-      <CheckCardList />
+      <CheckCardList type={type} areaId={id} />
     </Wrapper>
   );
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Description from '../../components/goal/Description.tsx';
-import GoalList from '../../components/Common/GoalList.tsx';
-import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import GoalList from '../../components/common/GoalList.tsx';
+import BackToolbar from '../../components/common/BackToolbar.tsx';
 
 const GoalSelectPage = () => {
   return (

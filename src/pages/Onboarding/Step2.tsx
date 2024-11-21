@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/Common/Button';
+import Button from '../../components/common/Button';
 import OnboardingHeader from '../../components/Onboarding/OnboardingHeader';
 import styled from 'styled-components';
 import ObSecondPng from '../../assets/images/ob-second.png';

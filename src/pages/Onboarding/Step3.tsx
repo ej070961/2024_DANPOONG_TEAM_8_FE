@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import OnboardingHeader from '../../components/Onboarding/OnboardingHeader';
-import Button from '../../components/Common/Button';
+import Button from '../../components/common/Button';
 import { useNavigate } from 'react-router-dom';
 import ObThirdPng from '../../assets/images/ob-third.png';
 import StatusBar from '../../components/Onboarding/StatusBar';

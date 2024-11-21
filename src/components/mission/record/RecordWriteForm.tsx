@@ -1,5 +1,5 @@
 import RecordInput from './RecordInput.tsx';
-import CustomButton from '../../common/CustomButton.tsx';
+import CustomButton from '../../Common/CustomButton.tsx';
 import styled from 'styled-components';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -9,7 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getMissionRecord, postMissionRecord } from '../../../apis/mission.ts';
 import { MissionRecord } from '../../../@type/mission.ts';
-import Loading from '../../Common/Loading.tsx';
+import Loading from '../../common/Loading.tsx';
 import Comment from '../detail/Comment.tsx';
 
 const schema = yup.object().shape({
@@ -85,9 +85,7 @@ const RecordWriteForm = () => {
             error={errors.feeling?.message}
           />
           <CommentContainer>
-            <Comment
-              content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`}
-            />
+            <Comment content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`} />
           </CommentContainer>
           <ButtonContainer>
             <CustomButton label='완료' isValid={isValid} />

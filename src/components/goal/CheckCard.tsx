@@ -1,15 +1,24 @@
 import styled from 'styled-components';
 import Stepper from './Stepper.tsx';
-
+import { useState } from 'react';
 interface CheckCardProps {
-  content: string;
+  qId: number; // 각 카드의 고유 ID
+  content: string; // 카드에 표시될 텍스트
+  onScoreChange: (qId: number, score: number) => void; // 점수 변경 핸들러
 }
 
-const CheckCard = ({ content }: CheckCardProps) => {
+const CheckCard = ({ qId, content, onScoreChange }: CheckCardProps) => {
+  const [score, setScore] = useState(0);
+
+  const handleScoreChange = (newScore: number) => {
+    setScore(newScore + 1); // 로컬 상태 업데이트
+    onScoreChange(qId, newScore + 1); // 부모에 점수 전달
+  };
+
   return (
     <CheckCardContainer>
       <CheckText>{content}</CheckText>
-      <Stepper />
+      <Stepper score={score} onScoreChange={handleScoreChange} />
     </CheckCardContainer>
   );
 };

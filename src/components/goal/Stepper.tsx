@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import check from '../../assets/svg/check.svg';
-
-const Stepper = () => {
+interface StepperProps {
+  score: number;
+  onScoreChange: (score: number) => void;
+}
+const Stepper = ({ score, onScoreChange }: StepperProps) => {
   const [steps, setSteps] = useState([false, false, false, false]);
 
   const handleStepClick = (index: number) => {
     setSteps(
       (prevSteps) => prevSteps.map((_, i) => i === index), // 클릭된 Step만 true, 나머지는 false
     );
+    onScoreChange(index + 1); //점수 수정
   };
 
   return (
@@ -64,7 +68,7 @@ const Circle = styled.div<CircleProps>`
   height: 30px;
   border-radius: 50%;
   background-color: ${({ $checked, theme }) =>
-  $checked ? theme.colors.primary : theme.colors.gray100};
+    $checked ? theme.colors.primary : theme.colors.gray100};
   display: flex;
   align-items: center;
   justify-content: center;

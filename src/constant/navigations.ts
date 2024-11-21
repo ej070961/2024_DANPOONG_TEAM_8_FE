@@ -15,4 +15,5 @@ export const navigations = {
   INITIALSETUP: '/initial-setup',
   SUPPORT: '/support',
   AUTH: '/auth',
+  ANALYSISRESULT: 'analysis-result',
 };
