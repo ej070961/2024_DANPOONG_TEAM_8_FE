@@ -34,9 +34,9 @@ export const postMissionRecord = async ({ id, content, feedback }: MissionRecord
   }
 };
 
-export const getMissionRecord = async (id: number) => {
+export const getMissionRecord = async (id: string) => {
   try {
-    const res = await axiosInstance.get<MissionRecordRes>(`/missionRecord/`, {
+    const res = await axiosInstance.get<MissionRecordRes>(`/missionRecord/create`, {
       params: {
         mission: id,
       },
