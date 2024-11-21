@@ -17,6 +17,9 @@ import InitialSetup from './pages/InitialSetup/InitialSetup.tsx';
 import ChatbotPage from './pages/chat/ChatbotPage.tsx';
 import SupportPage from './pages/support/SupportPage.tsx';
 import Auth from './pages/Auth/Auth.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   const router = createBrowserRouter([
@@ -90,8 +93,10 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </>
   );
 }
