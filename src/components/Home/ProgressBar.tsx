@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
-function ProgressBar() {
+interface ProgressProps {
+  value: number;
+}
+
+function ProgressBar({ value }: ProgressProps) {
   return (
     <Container>
-      <ProgressBox percent={20}>
+      <ProgressBox percent={value}>
         <div className='content' />
       </ProgressBox>
-      <p>20%</p>
+      <p>{value}%</p>
     </Container>
   );
 }

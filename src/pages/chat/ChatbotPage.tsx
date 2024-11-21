@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-import chatbot from '../../assets/images/chatbot.png';
 import ChatRoom from '../../components/chat/ChatRoom.tsx';
 import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import { useLocation } from 'react-router-dom';
 
 const ChatbotPage = () => {
+  const location = useLocation();
+  const { characterName, image } = location.state || {};
+
   return (
     <ChatbotContainer>
-      <BackToolbar title='버디버디' isWhite={true} />
+      <BackToolbar title={characterName} isWhite={true} />
       <BackgroundImage src={'/src/assets/svg/chatbot_bottom_bg.svg'} />
-      <ChatbotImage src={chatbot} alt='chatbot' />
+      <ChatbotImage src={image} alt='chatbot' />
       <ChatRoom />
     </ChatbotContainer>
   );
