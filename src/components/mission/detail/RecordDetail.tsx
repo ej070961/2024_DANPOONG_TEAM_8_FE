@@ -22,6 +22,7 @@ const RecordDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  overflow-y: auto;
 `;
 
 const CommentContainer = styled.div`

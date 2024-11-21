@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BackToolbar from '../../components/common/BackToolbar.tsx';
+import BackToolbar from '../../components/Common/BackToolbar.tsx';
 import RecordWriteForm from '../../components/mission/record/RecordWriteForm.tsx';
 
 const MissionRecordWritePage = () => {
@@ -21,4 +21,5 @@ const MissionRecordWriteContainer = styled.div`
   max-width: 480px;
   height: 100vh;
   background-color: white;
+  overflow-y: hidden;
 `;
