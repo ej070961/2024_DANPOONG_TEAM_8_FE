@@ -38,7 +38,7 @@ const RecordWriteForm = () => {
   });
   const { data, isPending } = useQuery({
     queryKey: ['missionRecord', missionId],
-    queryFn: () => getMissionRecord(Number(missionId)),
+    queryFn: () => getMissionRecord(missionId!!),
   });
 
   const {
@@ -65,7 +65,7 @@ const RecordWriteForm = () => {
 
   return (
     <>
-      <MissionTitle>{data?.missionName}3일 동안의 식단 작성하기</MissionTitle>
+      <MissionTitle>{data?.mission.missionName}</MissionTitle>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ height: '100%', display: 'flex', flexDirection: 'column', marginTop: '30px' }}
