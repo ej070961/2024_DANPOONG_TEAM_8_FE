@@ -8,15 +8,14 @@ interface MissionProps {
   missionType: string;
   missionName: string;
   isComplete: boolean;
+  isHome?: boolean;
 }
 
-const MissionCard = ({ id, missionType, missionName, isComplete }: MissionProps) => {
+const MissionCard = ({ id, missionType, missionName, isComplete, isHome }: MissionProps) => {
   const navigate = useNavigate();
 
   const label = isComplete ? '완료' : '기록하기';
-  const path = isComplete
-    ? navigations.MISSION_COMPLETE_DETAIL
-    : navigations.MISSION_RECORD_WRITE;
+  const path = isComplete ? navigations.MISSION_COMPLETE_DETAIL : navigations.MISSION_RECORD_WRITE;
 
   const handleNavigate = () => {
     navigate(`${path}/${id}`);
@@ -26,7 +25,11 @@ const MissionCard = ({ id, missionType, missionName, isComplete }: MissionProps)
       <MissionType>{missionType}</MissionType>
       <MissionTitle>{missionName}</MissionTitle>
       <ButtonContainer>
-        <CardButton isDisabled={isComplete} label={label} onClick={handleNavigate} />
+        <CardButton
+          isDisabled={isComplete}
+          label={isHome ? '완료하기' : label}
+          onClick={handleNavigate}
+        />
       </ButtonContainer>
     </MissionContainer>
   );

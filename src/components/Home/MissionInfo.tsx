@@ -1,15 +1,23 @@
 import styled from 'styled-components';
 import ProgressBar from './ProgressBar';
 
-function MissionInfo() {
+interface MissionInfoProps {
+  nickname: string;
+  level: number;
+  missionProPer: number;
+}
+
+function MissionInfo({ nickname, level, missionProPer }: MissionInfoProps) {
+  const missionRestCount = (100 - missionProPer) / 20;
   return (
     <Container>
-      <span className='body-m-dark'>단풍님</span>
-      <ProgressBar />
+      <span className='body-m-dark'>{nickname}님</span>
+      <ProgressBar value={missionProPer} />
       <div>
-        <span className='body-m-dark'>{'레벨 3 '}</span>
+        <span className='body-m-dark'>레벨 {level} </span>
         <span className='body-m-600'>
-          목표 달성까지 <span className='body-m-purple '>4개의 미션</span>이 남았어요!
+          목표 달성까지 <span className='body-m-purple '>{missionRestCount}개의 미션</span>이
+          남았어요!
         </span>
       </div>
     </Container>
@@ -33,10 +41,12 @@ const Container = styled.div`
     ${({ theme }) => theme.fonts.body_m_14px};
     color: ${({ theme }) => theme.colors.gray900};
   }
+
   .body-m-600 {
     ${({ theme }) => theme.fonts.body_m_14px};
     color: ${({ theme }) => theme.colors.gray600};
   }
+
   .body-m-purple {
     ${({ theme }) => theme.fonts.body_m_14px};
     color: ${({ theme }) => theme.colors.primary_lighten100};

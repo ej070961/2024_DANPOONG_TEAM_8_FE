@@ -6,22 +6,53 @@ import ChatIcon from '../../assets/icon/chat-icon';
 import ChatIntroSvg from '../../assets/svg/chat-intro.svg?react';
 import StarSvg from '../../assets/svg/star.svg?react';
 import PolygonSvg from '../../assets/svg/polygon.svg?react';
-import Chick from '../../assets/images/chick.png';
 import { useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations.ts';
+import { useQuery } from '@tanstack/react-query';
+import { getHomeInfo } from '../../apis/home.ts';
+import Loading from '../../components/Common/Loading.tsx';
+import { CharacterType } from '../../constant/character.ts';
+import MissionCard from '../../components/mission/MissionCard.tsx';
+import { AreaType } from '../../@type/goal.ts';
 
 function Home() {
-  const navigation = useNavigate()
-  const handleNavigate = () => {
-    navigation(navigations.CHAT)
+  const { data, isPending } = useQuery({
+    queryKey: ['home'],
+    queryFn: () => getHomeInfo(),
+  });
+  const navigation = useNavigate();
+
+  if (isPending) {
+    return (
+      <Wrapper>
+        <Loading />
+      </Wrapper>
+    );
   }
+
+  const character = data?.character!!;
+  const mission = data?.mission!!;
+  const characterImage = CharacterType[character.characterType];
+
+  const handleNavigate = () => {
+    navigation(navigations.CHAT, {
+      state: {
+        characterName: character.characterName,
+        image: characterImage,
+      },
+    });
+  };
 
   return (
     <Wrapper>
       <ContentContainer>
         {/* 미션관리, 챗봇 버튼 영역 */}
         <HeaderSection>
-          <MissionInfo />
+          <MissionInfo
+            nickname={data!!.member_nickname}
+            level={character.level}
+            missionProPer={data!!.missionProPer}
+          />
           <ChatBtn onClick={handleNavigate}>
             <ChatIcon />
           </ChatBtn>
@@ -36,10 +67,19 @@ function Home() {
             <StyledStar left={80} top={10} />
             <StyledStar left={50} top={60} />
             <StyledStar right={50} top={30} />
-            <img src={Chick} />
+            <img src={characterImage} />
           </ImgContainer>
-          <button className='name-wrapper'>버디버디</button>
+          <button className='name-wrapper'>{character?.characterName}</button>
         </CharacterSection>
+        <MissionContainer>
+          <MissionCard
+            id={mission.id}
+            missionType={AreaType[mission.areaName]}
+            missionName={mission.missionName}
+            isComplete={mission.isCompleted}
+            isHome={true}
+          />
+        </MissionContainer>
       </ContentContainer>
       <NavBar />
     </Wrapper>
@@ -59,13 +99,13 @@ const Wrapper = styled.div`
   background-size: 100vw 100vh;
 `;
 const ContentContainer = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 11px 16px 110px 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 11px 16px 110px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HeaderSection = styled.section`
@@ -139,11 +179,11 @@ const ImgContainer = styled.div`
 `;
 
 const Stargrow = keyframes`
-   0% {
-    transform: scale(0.5); 
+  0% {
+    transform: scale(0.5);
   }
   100% {
-    transform: scale(1.3); 
+    transform: scale(1.3);
   }
 `;
 
@@ -192,4 +232,11 @@ const CharacterSection = styled.section`
     ${({ theme }) => theme.fonts.body_m_14px};
     color: ${({ theme }) => theme.colors.gray900};
   }
+`;
+
+const MissionContainer = styled.div`
+  position: absolute;
+  bottom: 112px;
+  width: 100%;
+  padding: 0 16px;
 `;
