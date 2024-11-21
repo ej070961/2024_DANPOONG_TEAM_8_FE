@@ -10,7 +10,6 @@ interface MissionListProps {
 }
 
 const MissionList = ({ type }: MissionListProps) => {
-  // TODO 수정 예정
   const { data, isPending } = useFetchMissions(type);
 
   if (isPending) {
@@ -29,9 +28,9 @@ const MissionList = ({ type }: MissionListProps) => {
         />
       ))}
       {data?.length === 0 && (
-        <NonMissionContainer style={{display: 'flex', flexDirection: 'column'}}>
+        <NonMissionContainer>
           <NoneMissionText>아직 완료한 미션이 없어요!</NoneMissionText>
-          <img src={'/src/assets/images/slime2.png'} style={{width: '120px', height: '100px'}}/>
+          <Image src={'/src/assets/images/slime2.png'} />
         </NonMissionContainer>
       )}
     </MissionListContainer>
@@ -62,4 +61,9 @@ const NonMissionContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 70vh;
+`;
+
+const Image = styled.img`
+  width: 120px;
+  height: 100px;
 `

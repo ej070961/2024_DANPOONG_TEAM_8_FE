@@ -5,9 +5,9 @@ export const useFetchMissions = (type: string) => {
   if (type === 'onGoing') {
     return useQuery({
       queryKey: ['ongoingMissions'],
-      queryFn: () => getOnGoingMissions(),
+      queryFn: () => getOnGoingMissions().then((res) => res),
     });
-  } else if (type === 'completed') {
+  } else {
     return useQuery({
       queryKey: ['completedMissions'],
       queryFn: () => getCompletedMissions().then((res) => res.missions),
