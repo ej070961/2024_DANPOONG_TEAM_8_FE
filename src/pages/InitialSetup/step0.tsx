@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import Header from '../../components/InitialSetup/Header';
 import { useState } from 'react';
-import Loader from '../../components/Common/Loader';
+import Loader from '../../components/common/Loader';
 import Slime2 from '../../assets/images/slime2.png';
 import { useNavigate } from 'react-router-dom';
 function Step0({ nickname }: { nickname: string }) {

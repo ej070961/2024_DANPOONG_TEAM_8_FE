@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Toolbar from '../../components/common/Toolbar.tsx';
+import Toolbar from '../../components/Common/Toolbar.tsx';
 import SupportTabs from '../../components/support/SupportTabs.tsx';
-import NavBar from '../../components/Common/NavBar.tsx';
+import NavBar from '../../components/common/NavBar.tsx';
 
 const SupportPage = () => {
   return (

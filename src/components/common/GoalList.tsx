@@ -3,7 +3,7 @@ import washer from '../../assets/images/washer.png';
 import door from '../../assets/images/door.png';
 import money from '../../assets/images/money.png';
 import clean from '../../assets/images/clean.png';
-import DoneCard from '../Common/DoneCard.tsx';
+import DoneCard from './DoneCard.tsx';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getCompleteArea } from '../../apis/area.ts';
@@ -48,8 +48,11 @@ const GoalList = ({ enabled, init, currentAreaType }: GoalListProps) => {
     queryFn: () => getCompleteArea(),
   });
   const navigate = useNavigate();
-  const handleNavigate = (id: number) => {
-    const goal = goalList.find((goal) => goal.id === id);
+
+  const handleNavigate = (id: string) => {
+    console.log(id);
+    const goal = goalList.find((el) => el.type == id);
+    console.log(goal);
     init
       ? navigate('/goal/confirm?init=true', { state: { goal } })
       : navigate('/goal/confirm?init=false', { state: { goal } });
@@ -66,10 +69,7 @@ const GoalList = ({ enabled, init, currentAreaType }: GoalListProps) => {
         const isCurrent = currentAreaType === goal.type;
 
         return (
-          <GoalContainer
-            key={goal.id}
-            onClick={enabled ? () => handleNavigate(goal.id) : undefined}
-          >
+          <GoalContainer key={goal.id} onClick={() => handleNavigate(goal.type)}>
             {isCompleted ? (
               <DoneCardWrapper>
                 <DoneCard label={'완료'} />

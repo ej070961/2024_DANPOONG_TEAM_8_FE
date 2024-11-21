@@ -1,33 +1,54 @@
 import styled from 'styled-components';
-import BackToolbar from '../../components/common/BackToolbar.tsx';
-import CustomButton from '../../components/common/CustomButton.tsx';
+import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import CustomButton from '../../components/Common/CustomButton.tsx';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import ConfirmContent from '../../components/goal/ConfirmContent.tsx';
 import { navigations } from '../../constant/navigations.ts';
+import { createInitGoal } from '../../apis/goal.ts';
+import { useAuthStore } from '../../store/useAuthStore.ts';
 
 const GoalSelectConfirmPage = () => {
   const location = useLocation();
-  const { id, goalType, image, progressType } = location.state.goal || {};
-  console.log(location.state);
+  const { id, goalName, image, type } = location.state.goal || {};
+
   const navigate = useNavigate();
-  console.log(id, progressType);
 
   const [searchParams] = useSearchParams();
   const initStatus = searchParams.get('init') === 'true';
 
-  const handleNavigate = () => {
+  const { accessToken } = useAuthStore();
+  console.log(accessToken);
+
+  const handleNavigate = async () => {
     console.log(initStatus);
-    if (initStatus) {
-      navigate('/initial-setup?step=3');
-    } else {
-      navigate(navigations.GOAL_PRE_CHECK);
+    //영역 생성 api 호출
+    const res = await createInitGoal(accessToken!, type);
+    console.log(res);
+    //성공 시
+    if (res && res.id) {
+      if (initStatus) {
+        //첫 영역 생성일 경우
+        navigate('/initial-setup?step=3', {
+          state: {
+            type: type,
+            id: res.id,
+          },
+        });
+      } else {
+        navigate(navigations.GOAL_PRE_CHECK, {
+          state: {
+            type: type,
+            id: res.id,
+          },
+        });
+      }
     }
   };
   return (
     <MissionCompletionContainer>
       <BackToolbar title=' ' />
       <ContentContainer>
-        <ConfirmContent goalType={goalType} image={image} />
+        <ConfirmContent goalType={type} image={image} />
       </ContentContainer>
       <ButtonContainer>
         <CustomButton label='네' isValid={true} onClick={handleNavigate} />

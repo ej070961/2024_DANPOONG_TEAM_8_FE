@@ -18,6 +18,7 @@ import ChatbotPage from './pages/chat/ChatbotPage.tsx';
 import SupportPage from './pages/support/SupportPage.tsx';
 import Auth from './pages/Auth/Auth.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AnalysisResult from './pages/goal/AnalysisResult.tsx';
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,10 @@ function App() {
         {
           path: navigations.AUTH,
           element: <Auth />,
+        },
+        {
+          path: navigations.ANALYSISRESULT,
+          element: <AnalysisResult />,
         },
       ],
     },

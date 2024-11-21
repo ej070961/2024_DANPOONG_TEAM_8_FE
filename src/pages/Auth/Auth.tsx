@@ -20,7 +20,12 @@ function Auth() {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
-        useAuthStore.setState({ accessToken: accessToken, refreshToken: refreshToken, kakaoId: kakaoId });
+        useAuthStore.setState({
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          kakaoId: kakaoId,
+          nickname: nickname,
+        });
         Login();
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
         console.log(nickname);
@@ -28,11 +33,7 @@ function Auth() {
         if (hasCharacter === 'true') {
           navigate(navigations.HOME);
         } else {
-          navigate(navigations.INITIALSETUP, {
-            state: {
-              nickname: nickname,
-            },
-          });
+          navigate(navigations.INITIALSETUP);
         }
       }
     };

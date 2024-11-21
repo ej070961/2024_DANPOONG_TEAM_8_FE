@@ -3,8 +3,8 @@ import GoalProgressbar from './GoalProgressbar.tsx';
 import { useQuery } from '@tanstack/react-query';
 import { getAreaHome } from '../../../apis/mission.ts';
 import { AreaType } from '../../../@type/goal.ts';
-import GoalList from '../../Common/GoalList.tsx';
-import Loading from '../../Common/Loading.tsx';
+import GoalList from '../../common/GoalList.tsx';
+import Loading from '../../common/Loading.tsx';
 
 const CurrentGoal = () => {
   const { data, isPending } = useQuery({
@@ -16,7 +16,10 @@ const CurrentGoal = () => {
     return <Loading />;
   }
 
-  const type = AreaType[data!!.progressAreaType] /*? AreaType[data?.progressAreaType] : AreaType['DAILY_LIFE'];*/
+  const type =
+    AreaType[
+      data!!.progressAreaType
+    ]; /*? AreaType[data?.progressAreaType] : AreaType['DAILY_LIFE'];*/
 
   return (
     <>
@@ -26,15 +29,11 @@ const CurrentGoal = () => {
           <GoalTitle>{type}기술 마스터하기</GoalTitle>
         </ContentContainer>
         <ProgressbarContainer>
-          <GoalProgressbar value={data!!.percentage}/>
+          <GoalProgressbar value={data!!.percentage} />
         </ProgressbarContainer>
       </GoalContainer>
       <MissionListText>자립목표 리스트</MissionListText>
-      <GoalList
-        enabled={false}
-        init={false}
-        currentAreaType='DAILY_LIFE'
-      />
+      <GoalList enabled={false} init={false} currentAreaType='DAILY_LIFE' />
     </>
   );
 };

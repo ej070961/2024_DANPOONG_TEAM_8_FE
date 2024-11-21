@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import MissionCard from './MissionCard.tsx';
 import { useFetchMissions } from '../../hooks/useFetchMissions.ts';
-import Loading from '../Common/Loading.tsx';
+import Loading from '../common/Loading.tsx';
 import { CompletedMission, OnGoingMission } from '../../@type/mission.ts';
 import { AreaType } from '../../@type/goal.ts';
 
@@ -25,7 +25,7 @@ const MissionList = ({ type }: MissionListProps) => {
           missionType={AreaType[mission.areaName]}
           missionName={mission.missionName}
           isComplete={mission.completed}
-          mission={type === 'onGoing' ? mission as OnGoingMission : undefined}
+          mission={type === 'onGoing' ? (mission as OnGoingMission) : undefined}
         />
       ))}
       {data?.length === 0 && (
@@ -63,8 +63,3 @@ const NonMissionContainer = styled.div`
   align-items: center;
   height: 70vh;
 `;
-
-const Image = styled.img`
-  width: 120px;
-  height: 100px;
-`

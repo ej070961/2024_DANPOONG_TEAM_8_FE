@@ -2,7 +2,7 @@
 import styled, { keyframes } from 'styled-components';
 import Header from '../../components/InitialSetup/Header';
 import EggPng from '../../assets/images/egg.png';
-import Button from '../../components/Common/Button';
+import Button from '../../components/common/Button';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createCharacter } from '../../apis/character';

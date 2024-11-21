@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import HomeIcon from '../../assets/icon/home-icon';
-import MissionIcon from '../../assets/icon/misson-icon';
-import MyIcon from '../../assets/icon/my-icon';
-import PolicyIcon from '../../assets/icon/policy-icon';
+import HomeIcon from '../../assets/icon/home-icon.tsx';
+import MissionIcon from '../../assets/icon/misson-icon.tsx';
+import MyIcon from '../../assets/icon/my-icon.tsx';
+import PolicyIcon from '../../assets/icon/policy-icon.tsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations.ts';
 import theme from '../../styles/theme.ts';

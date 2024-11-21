@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import Header from '../../components/InitialSetup/Header';
 import Description from '../../components/goal/Description';
-import GoalList from '../../components/Common/GoalList';
+import GoalList from '../../components/common/GoalList';
 function Step2() {
   return (
     <Wrapper>

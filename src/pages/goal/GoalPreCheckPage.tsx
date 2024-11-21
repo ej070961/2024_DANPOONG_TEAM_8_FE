@@ -1,16 +1,20 @@
 import styled from 'styled-components';
 import CheckCardList from '../../components/goal/CheckCardList.tsx';
 import CheckGuide from '../../components/goal/CheckGuide.tsx';
-import BackToolbar from '../../components/common/BackToolbar.tsx';
+import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import { useLocation } from 'react-router-dom';
 
 const GoalPreCheckPage = () => {
+  const location = useLocation();
+  const { type, id } = location.state;
+
   return (
     <GoalPreCheckContainer>
       <BackToolbar isWhite={true} />
       <GuideContainer>
         <CheckGuide />
       </GuideContainer>
-      <CheckCardList />
+      <CheckCardList type={type} areaId={id} />
     </GoalPreCheckContainer>
   );
 };
