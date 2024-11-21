@@ -5,7 +5,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InferType } from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getMissionRecord, postMissionRecord } from '../../../apis/mission.ts';
+import { MissionRecord } from '../../../@type/mission.ts';
+import Loading from '../../Common/Loading.tsx';
 
 const schema = yup.object().shape({
   mission: yup
@@ -22,6 +26,20 @@ type FormValues = InferType<typeof schema>;
 
 const RecordWriteForm = () => {
   const navigate = useNavigate();
+  const { missionId } = useParams<{ missionId: string }>();
+  const { mutate } = useMutation({
+    mutationFn: (data: MissionRecord) => postMissionRecord(data),
+    onSuccess: () => {
+      navigate('/mission/complete', { replace: true });
+    },
+    onError: () => {
+      alert('미션 기록 작성에 실패');
+    },
+  });
+  const { data, isPending } = useQuery({
+    queryKey: ['missionRecord', missionId],
+    queryFn: () => getMissionRecord(Number(missionId)),
+  });
 
   const {
     register,
@@ -33,14 +51,21 @@ const RecordWriteForm = () => {
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    // TODO: CREATE 작업
-    console.log(data);
-    navigate('/mission/complete', { replace: true });
+    const missionRecord: MissionRecord = {
+      id: Number(missionId),
+      content: data.mission!!,
+      feedback: data.feeling!!,
+    };
+    mutate(missionRecord);
   };
+
+  if (isPending) {
+    return <Loading />;
+  }
 
   return (
     <>
-      <MissionTitle>3일 동안의 식단 작성하기</MissionTitle>
+      <MissionTitle>{data?.missionName}3일 동안의 식단 작성하기</MissionTitle>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ height: '100%', display: 'flex', flexDirection: 'column', marginTop: '30px' }}
@@ -59,6 +84,9 @@ const RecordWriteForm = () => {
             error={errors.feeling?.message}
           />
         </InputContainer>
+        {/*<CommentContainer> // TODO 이거 추가
+          <Comment />
+        </CommentContainer>*/}
         <ButtonContainer>
           <CustomButton label='완료' isValid={isValid} />
         </ButtonContainer>

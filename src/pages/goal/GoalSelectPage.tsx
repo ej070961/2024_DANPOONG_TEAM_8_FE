@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import BackToolbar from '../../components/common/BackToolbar.tsx';
-import GoalList from '../../components/common/GoalList.tsx';
 import Description from '../../components/goal/Description.tsx';
+import GoalList from '../../components/Common/GoalList.tsx';
+import BackToolbar from '../../components/Common/BackToolbar.tsx';
 
 const GoalSelectPage = () => {
   return (
@@ -9,7 +9,7 @@ const GoalSelectPage = () => {
       <BackToolbar />
       <ContentContainer>
         <Description />
-        <GoalList enabled={true} init={false} />
+        <GoalList enabled={true} init={false} completeAreaTypes={[]} /*완료 영역 받기*/ />
       </ContentContainer>
     </GoalSelectContainer>
   );

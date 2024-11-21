@@ -9,36 +9,38 @@ import { useNavigate } from 'react-router-dom';
 const goalList = [
   {
     id: 1,
-    goalType: '일상생활기술',
+    goalName: '일상생활기술',
     image: washer,
-    progressType: '진행중',
+    type: 'DAILY_LIFE',
   },
   {
     id: 2,
-    goalType: '자기관리기술',
+    goalName: '자기관리기술',
     image: clean,
-    progressType: '완료',
+    type: 'SELF_MANAGEMENT',
   },
   {
     id: 3,
-    goalType: '돈관리기술',
+    goalName: '돈관리기술',
     image: money,
-    progressType: '진행전',
+    type: 'MONEY_MANAGEMENT',
   },
   {
     id: 4,
-    goalType: '사회진출기술',
+    goalName: '사회진출기술',
     image: door,
-    progressType: '진행전',
+    type: 'SOCIETY',
   },
 ];
 
 interface GoalListProps {
   enabled: boolean;
   init: boolean;
+  completeAreaTypes: string[];
+  currentAreaType?: string;
 }
 
-const GoalList = ({ enabled, init }: GoalListProps) => {
+const GoalList = ({ enabled, init, completeAreaTypes, currentAreaType }: GoalListProps) => {
   const navigate = useNavigate();
   const handleNavigate = (id: number) => {
     const goal = goalList.find((goal) => goal.id === id);
@@ -49,17 +51,29 @@ const GoalList = ({ enabled, init }: GoalListProps) => {
 
   return (
     <GoalListContainer>
-      {goalList.map((goal) => (
-        <GoalContainer key={goal.id} onClick={enabled ? () => handleNavigate(goal.id) : undefined}>
-          {goal.progressType !== '진행전' ? (
-            <DoneCardWrapper>
-              <DoneCard label={goal.progressType} />
-            </DoneCardWrapper>
-          ) : null}
-          <Image src={goal.image} alt={goal.goalType} />
-          <GoalTypeText>{goal.goalType}</GoalTypeText>
-        </GoalContainer>
-      ))}
+      {goalList.map((goal) => {
+        const isCompleted = completeAreaTypes.find((name) => name === goal.type); // 완료된 영역인지 확인
+        const isCurrent = currentAreaType === goal.type; // 현재 영역인지 확인
+
+        return (
+          <GoalContainer
+            key={goal.id}
+            onClick={enabled ? () => handleNavigate(goal.id) : undefined}
+          >
+            {isCompleted ? (
+              <DoneCardWrapper>
+                <DoneCard label={'완료'} />
+              </DoneCardWrapper>
+            ) : isCurrent ? ( // currentAreaType과 goal.type이 같으면
+              <DoneCardWrapper>
+                <DoneCard label={'진행중'} />
+              </DoneCardWrapper>
+            ) : null}
+            <Image src={goal.image} alt={goal.goalName} />
+            <GoalTypeText>{goal.goalName}</GoalTypeText>
+          </GoalContainer>
+        );
+      })}
     </GoalListContainer>
   );
 };

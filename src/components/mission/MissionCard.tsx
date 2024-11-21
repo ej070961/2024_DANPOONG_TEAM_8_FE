@@ -1,30 +1,32 @@
 import styled from 'styled-components';
-import CardButton from '../common/CardButton.tsx';
-import { ActivatedMission, CompletedMission } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations.ts';
+import CardButton from '../Common/CardButton.tsx';
 
 interface MissionProps {
-  mission: ActivatedMission | CompletedMission;
+  id: number;
+  missionType: string;
+  missionName: string;
+  isComplete: boolean;
 }
 
-const MissionCard = ({ mission }: MissionProps) => {
+const MissionCard = ({ id, missionType, missionName, isComplete }: MissionProps) => {
   const navigate = useNavigate();
 
-  const label = mission.isComplete ? '완료' : '기록하기';
-  const path = mission.isComplete
+  const label = isComplete ? '완료' : '기록하기';
+  const path = isComplete
     ? navigations.MISSION_COMPLETE_DETAIL
     : navigations.MISSION_RECORD_WRITE;
 
   const handleNavigate = () => {
-    navigate(`${path}/${mission.id}`);
+    navigate(`${path}/${id}`);
   };
   return (
     <MissionContainer onClick={handleNavigate}>
-      <MissionType>{mission.missionType}</MissionType>
-      <MissionTitle>{mission.missionTitle}</MissionTitle>
+      <MissionType>{missionType}</MissionType>
+      <MissionTitle>{missionName}</MissionTitle>
       <ButtonContainer>
-        <CardButton isDisabled={mission.isComplete} label={label} onClick={handleNavigate} />
+        <CardButton isDisabled={isComplete} label={label} onClick={handleNavigate} />
       </ButtonContainer>
     </MissionContainer>
   );
