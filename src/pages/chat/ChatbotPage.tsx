@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import BackToolbar from '../../components/common/BackToolbar.tsx';
 import chatbot from '../../assets/images/chatbot.png';
 import ChatRoom from '../../components/chat/ChatRoom.tsx';
+import BackToolbar from '../../components/Common/BackToolbar.tsx';
 
 const ChatbotPage = () => {
   return (
