@@ -46,18 +46,18 @@ export const getMissionRecord = async (id: number) => {
   }
 };
 
-export const getOnGoingMissions = async () => {
+export const getOnGoingMissions: () => Promise<OnGoingMission[]> = async () => {
   try {
-    const res = await axiosInstance.get<OnGoingMission[]>('/missions/ongoing');
+    const res = await axiosInstance.get('/missions/ongoing');
     return res.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getCompletedMissions = async () => {
+export const getCompletedMissions: () => Promise<CompletedMissionsRes> = async () => {
   try {
-    const res = await axiosInstance.get<CompletedMissionsRes>('/missions/completed');
+    const res = await axiosInstance.get('/missions/completed');
     return res.data;
   } catch (error) {
     console.error(error);
