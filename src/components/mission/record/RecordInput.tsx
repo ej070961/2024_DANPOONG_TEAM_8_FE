@@ -14,9 +14,8 @@ interface TextInputProps {
   error?: string;
 }
 
-const RecordInput = ({ title, register, name, error }: TextInputProps) => {
+const RecordInput = ({ title, register, name }: TextInputProps) => {
   const [length, setLength] = useState(0);
-  console.log(error);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setLength(event.target.value.length);
