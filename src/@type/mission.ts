@@ -12,14 +12,14 @@ export interface OnGoingMission {
   description: string;
   duration: string;
   steps: string[];
-  isCompleted: boolean;
+  completed: boolean;
 }
 
 export interface CompletedMission {
   id: number;
   missionName: string;
   areaName: string;
-  isCompleted: boolean;
+  completed: boolean;
 }
 
 export interface CompletedMissionsRes {
@@ -33,6 +33,15 @@ export type MissionRecord = {
 };
 
 export interface MissionRecordRes {
-  missionName: string;
-  areaName: string;
+  member: {
+    id: number;
+    kakaoId: number;
+    nickname: string;
+  };
+  mission: {
+    areaName: string;
+    completed: boolean;
+    id: number;
+    missionName: string;
+  }
 }
