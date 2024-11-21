@@ -10,6 +10,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getMissionRecord, postMissionRecord } from '../../../apis/mission.ts';
 import { MissionRecord } from '../../../@type/mission.ts';
 import Loading from '../../Common/Loading.tsx';
+import Comment from '../detail/Comment.tsx';
 
 const schema = yup.object().shape({
   mission: yup
@@ -38,7 +39,7 @@ const RecordWriteForm = () => {
   });
   const { data, isPending } = useQuery({
     queryKey: ['missionRecord', missionId],
-    queryFn: () => getMissionRecord(Number(missionId)),
+    queryFn: () => getMissionRecord(missionId!!),
   });
 
   const {
@@ -64,8 +65,8 @@ const RecordWriteForm = () => {
   }
 
   return (
-    <>
-      <MissionTitle>{data?.missionName}3일 동안의 식단 작성하기</MissionTitle>
+    <InputFormWrapper>
+      <MissionTitle>{data?.mission.missionName}</MissionTitle>
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{ height: '100%', display: 'flex', flexDirection: 'column', marginTop: '30px' }}
@@ -83,19 +84,35 @@ const RecordWriteForm = () => {
             register={register}
             error={errors.feeling?.message}
           />
+          <CommentContainer>
+            <Comment
+              content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`}
+            />
+          </CommentContainer>
+          <ButtonContainer>
+            <CustomButton label='완료' isValid={isValid} />
+          </ButtonContainer>
         </InputContainer>
-        {/*<CommentContainer> // TODO 이거 추가
-          <Comment />
-        </CommentContainer>*/}
-        <ButtonContainer>
-          <CustomButton label='완료' isValid={isValid} />
-        </ButtonContainer>
       </form>
-    </>
+    </InputFormWrapper>
   );
 };
 
 export default RecordWriteForm;
+
+const InputFormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  overflow-y: scroll;
+`;
+
+const MissionTitle = styled.span`
+  margin-top: 6px;
+  margin-left: 8px;
+  font: ${({ theme }) => theme.fonts.heading_sb_22px};
+  color: ${({ theme }) => theme.colors.gray900};
+`;
 
 const InputContainer = styled.div`
   flex: 1;
@@ -103,19 +120,16 @@ const InputContainer = styled.div`
   height: 210px;
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
   gap: 17px;
+  margin-bottom: 32px;
+`;
+
+const CommentContainer = styled.div`
+  margin-top: 46px;
 `;
 
 const ButtonContainer = styled.div`
   width: 100%;
-  margin-bottom: 32px;
-  padding: 0 16px 0 16px;
-`;
-
-const MissionTitle = styled.span`
-  margin-top: 6px;
-  margin-left: 24px;
-  font: ${({ theme }) => theme.fonts.heading_sb_22px};
-  color: ${({ theme }) => theme.colors.gray900};
+  margin-top: 18px;
+  padding-bottom: 32px;
 `;

@@ -1,9 +1,8 @@
 export interface GetAreaHomeRes {
-  "progressAreaType": string
   "percentage": number
+  "progressAreaType": string
   "completeAreaTypes": string[]
 }
-
 
 export interface OnGoingMission {
   id: number;
@@ -12,14 +11,14 @@ export interface OnGoingMission {
   description: string;
   duration: string;
   steps: string[];
-  isCompleted: boolean;
+  completed: boolean;
 }
 
 export interface CompletedMission {
   id: number;
   missionName: string;
   areaName: string;
-  isCompleted: boolean;
+  completed: boolean;
 }
 
 export interface CompletedMissionsRes {
@@ -33,6 +32,15 @@ export type MissionRecord = {
 };
 
 export interface MissionRecordRes {
-  missionName: string;
-  areaName: string;
+  member: {
+    id: number;
+    kakaoId: number;
+    nickname: string;
+  };
+  mission: {
+    areaName: string;
+    completed: boolean;
+    id: number;
+    missionName: string;
+  }
 }

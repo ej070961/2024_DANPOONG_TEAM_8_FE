@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import slime from '../../../assets/images/small-slime.png';
 
-const mockComment = `미션 수행 후 뿌듯한 기분이 드셨군요!\n뿌듯한 순간들이 쌓여 단풍님에게\n긍정적인 변화를 가져왔으면 좋겠어요!`;
+interface CommentProps {
+  content: string;
+}
 
-const Comment = () => {
+const Comment = ({ content }: CommentProps) => {
   return (
     <CommentContainer>
       <Tag>버디의 코멘트</Tag>
       <Image src={slime} />
-      <Content>{mockComment}</Content>
+      <Content>{content}</Content>
     </CommentContainer>
   );
 };
@@ -21,8 +23,7 @@ const CommentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 18px 18px 24px 18px;
+  padding: 36px 18px 30px 18px;
   border: none;
   border-radius: 28px;
   background-color: ${({ theme }) => theme.colors.gray50};
@@ -53,6 +54,7 @@ const Content = styled.div`
   text-align: center;
   white-space: pre-wrap;
   word-wrap: break-word;
+  
   // width: 100%;
   // max-width: 480px;
 `;

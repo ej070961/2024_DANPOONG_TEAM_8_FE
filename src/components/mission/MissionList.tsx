@@ -3,6 +3,7 @@ import MissionCard from './MissionCard.tsx';
 import { useFetchMissions } from '../../hooks/useFetchMissions.ts';
 import Loading from '../Common/Loading.tsx';
 import { CompletedMission, OnGoingMission } from '../../@type/mission.ts';
+import { AreaType } from '../../@type/goal.ts';
 
 interface MissionListProps {
   type: 'onGoing' | 'completed';
@@ -22,12 +23,17 @@ const MissionList = ({ type }: MissionListProps) => {
         <MissionCard
           key={mission.id}
           id={mission.id}
-          missionType={mission.areaName}
+          missionType={AreaType[mission.areaName]}
           missionName={mission.missionName}
-          isComplete={mission.isCompleted}
+          isComplete={mission.completed}
         />
       ))}
-      {data?.length === 0 && <NoneMissionText>미션이 존재하지 않습니다.</NoneMissionText>}
+      {data?.length === 0 && (
+        <NonMissionContainer style={{display: 'flex', flexDirection: 'column'}}>
+          <NoneMissionText>아직 완료한 미션이 없어요!</NoneMissionText>
+          <img src={'/src/assets/images/slime2.png'} style={{width: '120px', height: '100px'}}/>
+        </NonMissionContainer>
+      )}
     </MissionListContainer>
   );
 };
@@ -46,7 +52,14 @@ const NoneMissionText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font: ${({ theme }) => theme.fonts.body_sb_18px};
+  color: ${({ theme }) => theme.colors.gray400};
+`;
+
+const NonMissionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 70vh;
-  font: ${({ theme }) => theme.fonts.heading_sb_24px};
-  color: ${({ theme }) => theme.colors.gray900};
 `

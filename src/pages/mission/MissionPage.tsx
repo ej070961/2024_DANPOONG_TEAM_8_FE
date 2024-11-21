@@ -4,7 +4,6 @@ import Toolbar from '../../components/Common/Toolbar.tsx';
 import NavBar from '../../components/Common/NavBar.tsx';
 
 const MissionPage = () => {
-  console.log(localStorage.getItem('accessToken'));
   return (
     <MissionContainer>
       <Toolbar title='미션' />
