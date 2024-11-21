@@ -1,44 +1,46 @@
 import sendIcon from '../../assets/svg/send.svg';
 import React, { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Message } from '../../types';
+import { useChatStore } from '../../store/useChatStore.ts';
+import { useMutation } from '@tanstack/react-query';
+import { postChat } from '../../apis/chat.ts';
+import { Message } from '../../@type/chat.ts';
 
-interface ChatInputProps {
-  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
-}
-
-const ChatInput = ({ setMessages }: ChatInputProps) => {
+const ChatInput = () => {
   const [value, setValue] = useState<string>('');
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  const { addMessage } = useChatStore();
+
+  const mutation = useMutation({
+    mutationFn: async (message: string) => postChat(message),
+    onSuccess: (data) => {
+      const botReply = { id: Date.now(), content: data.answer, isUser: false };
+      addMessage(botReply);
+    },
+    onError: (error) => {
+      console.error('Chat API Error:', error);
+    },
+  });
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
 
     if (textAreaRef.current) {
-      // 높이 자동 조정
-      textAreaRef.current.style.height = '52px'; // 높이 초기화
-      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`; // 컨텐츠 높이에 맞게 설정
+      textAreaRef.current.style.height = '52px';
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
     }
   };
 
   const handleSendMessage = () => {
     if (value.trim()) {
       const userMessage: Message = { id: Date.now(), content: value.trim(), isUser: true };
-      setMessages((prev) => [...prev, userMessage]);
+      addMessage(userMessage);
+
       setValue('');
       if (textAreaRef.current) {
-        // 높이 자동 조정
-        textAreaRef.current.style.height = '52px'; // 높이 초기화
+        textAreaRef.current.style.height = '52px';
       }
-
-      setTimeout(() => {
-        const botReply: Message = {
-          id: Date.now() + 1,
-          content: '네, 이해했어요. 다음 질문을 해주세요.',
-          isUser: false,
-        };
-        setMessages((prev) => [...prev, botReply]);
-      }, 1000);
+      mutation.mutate(value.trim());
     }
   };
 
@@ -69,7 +71,11 @@ const ChatInput = ({ setMessages }: ChatInputProps) => {
           onKeyUp={handleKeyUp}
           placeholder='메세지를 입력해주세요'
         />
-        <SendButton className={value.trim() ? 'visible' : ''} onClick={handleSendMessage}>
+        <SendButton
+          className={value.trim() ? 'visible' : ''}
+          onClick={handleSendMessage}
+          disabled={!value.trim()}
+        >
           <img src={sendIcon} alt='Send' />
         </SendButton>
       </InputContainer>
@@ -137,7 +143,9 @@ const SendButton = styled.button`
 
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 0.3s ease, transform 0.1s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.1s ease;
 
   &.visible {
     opacity: 1;

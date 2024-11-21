@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { chatData } from '../../apis/mocks/chatData.ts';
-import { Message } from '../../types';
 import ChatInput from './ChatInput.tsx';
+import { useChatStore } from '../../store/useChatStore.ts';
 
 const ChatRoom = () => {
-  const [messages, setMessages] = useState<Message[]>(chatData);
+  const { messages } = useChatStore();
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const ChatRoom = () => {
           </ChatBubble>
         ))}
       </ChatContainer>
-      <ChatInput setMessages={setMessages} />
+      <ChatInput />
     </ChatWrapper>
   );
 };
