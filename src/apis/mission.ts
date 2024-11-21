@@ -7,12 +7,13 @@ import {
   OnGoingMission,
 } from '../@type/mission.ts';
 
-export const getAreaHome = async () => {
+export const getAreaHome: () => Promise<GetAreaHomeRes> = async () => {
   try {
-    const res = await axiosInstance.get<GetAreaHomeRes>('/area/home');
+    const res = await axiosInstance.get('/area/home');
     return res.data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 

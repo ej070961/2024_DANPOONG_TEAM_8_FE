@@ -1,17 +1,42 @@
 import styled from 'styled-components';
 import GoalProgressbar from './GoalProgressbar.tsx';
+import { useQuery } from '@tanstack/react-query';
+import { getAreaHome } from '../../../apis/mission.ts';
+import { AreaType } from '../../../@type/goal.ts';
+import GoalList from '../../Common/GoalList.tsx';
+import Loading from '../../Common/Loading.tsx';
 
 const CurrentGoal = () => {
+  const { data, isPending } = useQuery({
+    queryKey: ['currentGoal'],
+    queryFn: () => getAreaHome(),
+  });
+
+  if (isPending) {
+    return <Loading />;
+  }
+
+  const type = AreaType[data!!.progressAreaType] /*? AreaType[data?.progressAreaType] : AreaType['DAILY_LIFE'];*/
+
   return (
-    <GoalContainer>
-      <ContentContainer>
-        <CurrentGoalLabel>현재 목표</CurrentGoalLabel>
-        <GoalTitle>일상생활기술 마스터하기</GoalTitle>
-      </ContentContainer>
-      <ProgressbarContainer>
-        <GoalProgressbar value={50} />
-      </ProgressbarContainer>
-    </GoalContainer>
+    <>
+      <GoalContainer>
+        <ContentContainer>
+          <CurrentGoalLabel>현재 목표</CurrentGoalLabel>
+          <GoalTitle>{type}기술 마스터하기</GoalTitle>
+        </ContentContainer>
+        <ProgressbarContainer>
+          <GoalProgressbar value={data!!.percentage}/>
+        </ProgressbarContainer>
+      </GoalContainer>
+      <MissionListText>자립목표 리스트</MissionListText>
+      <GoalList
+        enabled={false}
+        init={false}
+        currentAreaType='DAILY_LIFE'
+        completeAreaTypes={data!!.completeAreaTypes}
+      />
+    </>
   );
 };
 
@@ -52,4 +77,12 @@ const ProgressbarContainer = styled.div`
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: flex-end; /* 수평 끝으로 정렬 */
   width: 80px; /* 적절한 너비를 설정하여 공간 확보 */
+`;
+
+const MissionListText = styled.div`
+  font: ${({ theme }) => theme.fonts.body_sb_18px};
+  color: ${({ theme }) => theme.colors.gray900};
+  padding-left: 8px;
+  padding-top: 34px;
+  padding-bottom: 14px;
 `;
