@@ -1,9 +1,8 @@
 export interface GetAreaHomeRes {
-  "progressAreaType": string
   "percentage": number
+  "progressAreaType": string
   "completeAreaTypes": string[]
 }
-
 
 export interface OnGoingMission {
   id: number;
