@@ -17,5 +17,5 @@ export const axiosFastInstance = axios.create({
     'Content-Type': 'application/json',
     'kakao-id': useAuthStore.getState().kakaoId,
   },
-  withCredentials: true,
+  //withCredentials: true,
 });
