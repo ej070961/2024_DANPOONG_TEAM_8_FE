@@ -11,6 +11,7 @@ import { getMissionRecord, postMissionRecord } from '../../../apis/mission.ts';
 import { MissionRecord } from '../../../@type/mission.ts';
 import Loading from '../../Common/Loading.tsx';
 import Comment from '../detail/Comment.tsx';
+import { navigations } from '../../../constant/navigations.ts';
 
 const schema = yup.object().shape({
   mission: yup
@@ -28,11 +29,13 @@ type FormValues = InferType<typeof schema>;
 const RecordWriteForm = () => {
   const navigate = useNavigate();
   const { missionId } = useParams<{ missionId: string }>();
-  const { mutate } = useMutation({
-    mutationFn: (data: MissionRecord) => postMissionRecord(data),
-    onSuccess: () => {
-      navigate('/mission/complete', { replace: true });
-    },
+  const {
+    data: missionData,
+    mutate,
+    isPending: postPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: (missionRecord: MissionRecord) => postMissionRecord(missionRecord),
     onError: () => {
       alert('미션 기록 작성에 실패');
     },
@@ -60,8 +63,22 @@ const RecordWriteForm = () => {
     mutate(missionRecord);
   };
 
-  if (isPending) {
+  if (isPending || postPending) {
     return <Loading />;
+  }
+
+  if (isSuccess && !postPending) {
+    console.log(missionData);
+    if (missionData?.allCompleted) {
+      navigate(navigations.GOAL_COMPLETE, {
+        state: {
+          areaName: missionData.missionResponse2DTO.areaName,
+          characterType: missionData.characterResponseDTOForMission.characterType,
+        },
+      });
+    } else {
+      navigate('/mission/complete', { replace: true });
+    }
   }
 
   return (
@@ -85,7 +102,10 @@ const RecordWriteForm = () => {
             error={errors.feeling?.message}
           />
           <CommentContainer>
-            <Comment content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`} completed={false}/>
+            <Comment
+              content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`}
+              completed={false}
+            />
           </CommentContainer>
           <ButtonContainer>
             <CustomButton label='완료' isValid={isValid} />

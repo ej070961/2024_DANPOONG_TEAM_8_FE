@@ -9,7 +9,7 @@ import { useAuthStore } from '../../store/useAuthStore.ts';
 
 const GoalSelectConfirmPage = () => {
   const location = useLocation();
-  const { id, goalName, image, type } = location.state.goal || {};
+  const { image, type } = location.state.goal || {};
 
   const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ const MissionCompletionContainer = styled.div`
 
 const ContentContainer = styled.div`
   display: flex;
-  margin-top: 37px;
+  margin-top: 74px;
 `;
 
 const ButtonContainer = styled.div`

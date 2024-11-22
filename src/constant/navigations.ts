@@ -16,4 +16,5 @@ export const navigations = {
   SUPPORT: '/support',
   AUTH: '/auth',
   ANALYSISRESULT: 'analysis-result',
+  GOAL_COMPLETE: '/goal/complete',
 };
