@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import BackToolbar from '../../components/common/BackToolbar.tsx';
 import RecordWriteForm from '../../components/mission/record/RecordWriteForm.tsx';
 
 const MissionRecordWritePage = () => {

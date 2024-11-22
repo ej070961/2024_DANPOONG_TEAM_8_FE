@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import MissionCard from './MissionCard.tsx';
 import { useFetchMissions } from '../../hooks/useFetchMissions.ts';
-import Loading from '../Common/Loading.tsx';
+import Loading from '../common/Loading.tsx';
 import { CompletedMission, OnGoingMission } from '../../@type/mission.ts';
 import { AreaType } from '../../@type/goal.ts';
 
@@ -68,4 +68,4 @@ const Image = styled.img`
   width: 120px;
   height: 96px;
   margin-top: 18px;
-`
+`;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import BackToolbar from '../../components/Common/BackToolbar.tsx';
-import CustomButton from '../../components/Common/CustomButton.tsx';
+import BackToolbar from '../../components/common/BackToolbar.tsx';
+import CustomButton from '../../components/common/CustomButton.tsx';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import ConfirmContent from '../../components/goal/ConfirmContent.tsx';
 import { navigations } from '../../constant/navigations.ts';

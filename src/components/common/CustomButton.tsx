@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface CustomButtonProps {
   label: string;
-  isValid: boolean;
+  isValid?: boolean;
   onClick?: () => void;
 }
 
@@ -17,7 +17,7 @@ const CustomButton = ({ label, isValid, onClick }: CustomButtonProps) => {
 export default CustomButton;
 
 interface ButtonProps {
-  $isValid: boolean;
+  $isValid?: boolean;
 }
 
 const Button = styled.button<ButtonProps>`
@@ -28,5 +28,5 @@ const Button = styled.button<ButtonProps>`
   color: white;
   font: ${({ theme }) => theme.fonts.body_sb_18px};
   background-color: ${({ $isValid, theme }) =>
-  $isValid ? theme.colors.primary : theme.colors.gray300};
+    $isValid ? theme.colors.primary : theme.colors.gray300};
 `;
