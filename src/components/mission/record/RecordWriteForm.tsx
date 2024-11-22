@@ -85,7 +85,7 @@ const RecordWriteForm = () => {
             error={errors.feeling?.message}
           />
           <CommentContainer>
-            <Comment content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`} />
+            <Comment content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`} completed={false}/>
           </CommentContainer>
           <ButtonContainer>
             <CustomButton label='완료' isValid={isValid} />

@@ -1,7 +1,7 @@
-import { axiosInstance } from './index.ts';
+import { axiosFastInstance, axiosInstance } from './index.ts';
 import {
   CompletedMissionsRes,
-  GetAreaHomeRes,
+  GetAreaHomeRes, MissionDetailRes,
   MissionRecord,
   MissionRecordRes,
   OnGoingMission,
@@ -64,3 +64,12 @@ export const getCompletedMissions: () => Promise<CompletedMissionsRes> = async (
     console.error(error);
   }
 };
+
+export const postBuddyFeedback: (missionId: string) => Promise<MissionDetailRes> = async (missionId: string) => {
+  try {
+    const res = await axiosFastInstance.post(`/api/buddy-feedback?mission_id=${missionId}`);
+    return res.data
+  } catch ( error ) {
+    console.error(error);
+  }
+}

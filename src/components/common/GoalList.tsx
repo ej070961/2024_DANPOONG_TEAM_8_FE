@@ -69,7 +69,7 @@ const GoalList = ({ enabled, init, currentAreaType }: GoalListProps) => {
         const isCurrent = currentAreaType === goal.type;
 
         return (
-          <GoalContainer key={goal.id} onClick={() => handleNavigate(goal.type)}>
+          <GoalContainer key={goal.id} onClick={enabled ? () => handleNavigate(goal.type) : () => {}}>
             {isCompleted ? (
               <DoneCardWrapper>
                 <DoneCard label={'완료'} />

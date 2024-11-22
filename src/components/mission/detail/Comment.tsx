@@ -3,11 +3,12 @@ import slime from '../../../assets/images/small-slime.png';
 
 interface CommentProps {
   content: string;
+  completed: boolean;
 }
 
-const Comment = ({ content }: CommentProps) => {
+const Comment = ({ content, completed }: CommentProps) => {
   return (
-    <CommentContainer>
+    <CommentContainer $completed={completed}>
       <Tag>버디의 코멘트</Tag>
       <Image src={slime} />
       <Content>{content}</Content>
@@ -17,16 +18,16 @@ const Comment = ({ content }: CommentProps) => {
 
 export default Comment;
 
-const CommentContainer = styled.div`
+const CommentContainer = styled.div<{ $completed: boolean }>`
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 36px 18px 30px 18px;
-  border: none;
+  border: ${({ $completed, theme }) => $completed ? `2px solid ${theme.colors.gray200}` : 'none'};
   border-radius: 28px;
-  background-color: ${({ theme }) => theme.colors.gray100};
+  background-color: ${({ $completed, theme }) => $completed ? 'white' : theme.colors.gray100};
 `;
 
 const Tag = styled.span`
@@ -54,7 +55,7 @@ const Content = styled.div`
   text-align: center;
   white-space: pre-wrap;
   word-wrap: break-word;
-  
+
   // width: 100%;
   // max-width: 480px;
 `;
