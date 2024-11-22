@@ -2,16 +2,14 @@ import styled from 'styled-components';
 
 interface RecordProps {
   title: string;
+  content: string;
 }
 
-const mockContent =
-  '오늘은 뭘했냐면 잠을 자고 밥을 먹고 지금은 빼빼로를 먹으면서 작업을 하고 있다. 오늘까지 책을 읽었어야 했는데 못 읽었다. 오늘은 뭘했냐면 잠을 자고 밥을 먹고 지금은 빼빼로를 먹으면서 작업을 하고 있다. 오늘까지 책을 읽었어야 했는데 못 읽었다.오늘은 뭘했냐면 잠을 자고 밥을 먹고 지금은 빼빼로를 먹으면서 작업을 하고 있다. 오늘까지 책을 읽었어야 했는데 못 읽었다.오늘은 뭘했냐면 잠을 자고 밥을 먹고 지금은 빼빼로를 먹으면';
-
-const Record = ({ title }: RecordProps) => {
+const Record = ({ title, content }: RecordProps) => {
   return (
     <RecordContainer>
       <RecordTitle>{title}</RecordTitle>
-      <RecordContent>{mockContent}</RecordContent>
+      <RecordContent>{content}</RecordContent>
     </RecordContainer>
   );
 };
@@ -38,4 +36,5 @@ const RecordContent = styled.div`
   color: ${({ theme }) => theme.colors.gray900};
   padding: 0 18px;
   margin-top: 30px;
+  height: 160px;
 `;

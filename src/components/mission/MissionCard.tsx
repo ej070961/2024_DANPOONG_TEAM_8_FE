@@ -29,13 +29,16 @@ const MissionCard = ({
   const handleClose = () => setOpen(false);
 
   const label = isComplete ? '완료' : '기록하기';
-  const path = isComplete ? navigations.MISSION_COMPLETE_DETAIL : navigations.MISSION_RECORD_WRITE;
 
-  const handleNavigate = () => {
-    navigate(`${path}/${id}`);
+  const handleNavigateDetailPage = () => {
+    navigate(`${navigations.MISSION_COMPLETE_DETAIL}/${id}`, { state: { missionName } });
+  };
+
+  const handleNavigateWritePage = () => {
+    navigate(`${navigations.MISSION_RECORD_WRITE}/${id}`);
   };
   return (
-    <MissionContainer onClick={handleOpen}>
+    <MissionContainer onClick={isComplete ? handleNavigateDetailPage : handleOpen}>
       <GuideModal open={isComplete ? false : open} handleClose={handleClose} mission={mission!!} />
       <MissionType>{missionType}</MissionType>
       <MissionTitle>{missionName}</MissionTitle>
@@ -43,7 +46,7 @@ const MissionCard = ({
         <CardButton
           isDisabled={isComplete}
           label={isHome ? '완료하기' : label}
-          onClick={handleNavigate}
+          onClick={handleNavigateWritePage}
         />
       </ButtonContainer>
     </MissionContainer>

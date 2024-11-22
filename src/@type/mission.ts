@@ -44,3 +44,13 @@ export interface MissionRecordRes {
     missionName: string;
   }
 }
+
+export interface MissionDetailRes {
+  status: string;
+  message: string;
+  buddy_feedback: string;
+  char_type: string;
+  character_level: number;
+  user_mission: string;
+  user_feedback: string;
+}

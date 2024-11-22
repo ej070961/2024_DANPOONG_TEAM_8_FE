@@ -9,7 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getMissionRecord, postMissionRecord } from '../../../apis/mission.ts';
 import { MissionRecord } from '../../../@type/mission.ts';
-import Loading from '../../common/Loading.tsx';
+import Loading from '../../Common/Loading.tsx';
 import Comment from '../detail/Comment.tsx';
 
 const schema = yup.object().shape({
@@ -85,7 +85,7 @@ const RecordWriteForm = () => {
             error={errors.feeling?.message}
           />
           <CommentContainer>
-            <Comment content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`} />
+            <Comment content={`수행일지를 작성하면\n버디가 코멘트를 달아드려요!`} completed={false}/>
           </CommentContainer>
           <ButtonContainer>
             <CustomButton label='완료' isValid={isValid} />

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import RecordDetail from '../../components/mission/detail/RecordDetail.tsx';
-import BackToolbar from '../../components/common/BackToolbar.tsx';
+import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import { useLocation } from 'react-router-dom';
 
 const MissionCompleteDetailPage = () => {
+  const { missionName } = useLocation().state;
+
   return (
     <MissionCompleteDetailContainer>
-      <BackToolbar title='3일 동안의 식단 작성하기' />
+      <BackToolbar title={missionName} />
       <RecordDetailContainer>
         <RecordDetail />
       </RecordDetailContainer>

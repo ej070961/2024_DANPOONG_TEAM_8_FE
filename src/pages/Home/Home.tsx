@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 import BackgroundImg from '../../assets/images/home_bg.png';
-import NavBar from '../../components/Common/NavBar';
 import MissionInfo from '../../components/Home/MissionInfo';
 import ChatIcon from '../../assets/icon/chat-icon';
 import ChatIntroSvg from '../../assets/svg/chat-intro.svg?react';
@@ -10,10 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations.ts';
 import { useQuery } from '@tanstack/react-query';
 import { getHomeInfo } from '../../apis/home.ts';
-import Loading from '../../components/Common/Loading.tsx';
 import { CharacterType } from '../../constant/character.ts';
 import MissionCard from '../../components/mission/MissionCard.tsx';
 import { AreaType } from '../../@type/goal.ts';
+import NavBar from '../../components/Common/NavBar.tsx';
+import Loading from '../../components/Common/Loading.tsx';
 
 function Home() {
   const { data, isPending } = useQuery({
