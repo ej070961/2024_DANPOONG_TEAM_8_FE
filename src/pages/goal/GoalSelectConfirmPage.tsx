@@ -48,7 +48,7 @@ const GoalSelectConfirmPage = () => {
     <MissionCompletionContainer>
       <BackToolbar title=' ' />
       <ContentContainer>
-        <ConfirmContent goalType={type} image={image} />
+        <ConfirmContent goalType={goalName} image={image} />
       </ContentContainer>
       <ButtonContainer>
         <CustomButton label='네' isValid={true} onClick={handleNavigate} />

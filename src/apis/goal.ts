@@ -1,4 +1,4 @@
-import { axiosInstance } from '.';
+import { axiosFastInstance, axiosInstance } from '.';
 
 export const createInitGoal = async (accessToken: string, areaType: string) => {
   try {
@@ -43,5 +43,15 @@ export const sendCheckListData = async (scores: number[], accessToken: string, a
     return res.data;
   } catch (error) {
     console.error('에러:', error);
+  }
+};
+
+export const getCheckListAnalysisResult = async (checkListId: string) => {
+  try {
+    const res = await axiosFastInstance.get(`/generate-missions?check_list_id=${checkListId}`);
+
+    return res.data;
+  } catch (error) {
+    console.log(error);
   }
 };

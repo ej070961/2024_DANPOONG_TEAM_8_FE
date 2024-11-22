@@ -3,14 +3,40 @@ import styled from 'styled-components';
 import AIResultSvg from '../../assets/svg/ai-result.svg?react';
 import ArrowBottomIcon from '../../assets/svg/arrow-bottom.svg?react';
 import ResultPng from '../../assets/images/analysis-result.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/common/Button';
+import { useQuery } from '@tanstack/react-query';
+import { getCheckListAnalysisResult } from '../../apis/goal';
+import LoadingModal from '../../components/goal/LoadingModal';
 function AnalysisResult() {
   const [open, setOpen] = useState(false);
 
+  const [detailData, setDetailData] = useState('');
+
   const navigate = useNavigate();
-  //   const location = useLocation();
-  //   const { checkListId } = location.state;
+  const location = useLocation();
+  const { checkListId } = location.state;
+
+  const { isLoading, data } = useQuery({
+    queryKey: ['getAnalysisResult'],
+    queryFn: () => getCheckListAnalysisResult(checkListId),
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const jsonString = data.report.report[0].analysis.content;
+      // 문자열에서 ```json과 ``` 제거
+      const cleanedResponse = jsonString.replace(/```json|```/g, '');
+
+      const parsedData = JSON.parse(cleanedResponse); // JSON 파싱
+      console.log(parsedData.content);
+      setDetailData(parsedData.content); // content 필드 접근
+    };
+    if (!isLoading && data) {
+      fetchData();
+    }
+  }, [isLoading, data]);
+
   const handleClick = () => {
     setOpen(!open);
   };
@@ -18,36 +44,39 @@ function AnalysisResult() {
   const handleNavigate = () => {
     navigate('/home');
   };
-  return (
-    <Wrapper>
-      <ContentContainer>
-        <AIResultSvg />
-        <span className='title'>
-          {`단풍님은`} <span className='point-word'>식단 계획과 식품 관련</span>
-          {`\n도움이 필요할 것 같아요!`}
-        </span>
-        <img src={ResultPng} />
-        <span className='title'>관련된 맞춤형 미션을 제공해드릴게요</span>
-        <DetailBtn onClick={handleClick}>
-          자세한 분석 결과 보기 <ArrowBottomIcon />
-        </DetailBtn>
-        {open && (
-          <DetailContainer>
-            <span className='main-text'>종합 분석</span>
-            <div className='desc-container'>
-              <span>
-                단풍님은 생활 관리와 관련된 여러 항목에서 높은 점수를 기록했어요. 특히 청소 영역에
-                대해 뛰어난 능력을 보이셨으며, 쓰레기 처리 방법과 의류 정리 부분에서도 긍정적인
-                결과를 얻었어요. 다만 주방 기구 정리, 식품 유통기한 확인 및 식단계획과 같은
-                부분에서는 개선이 필요하다는 평가가 있었어요.
-              </span>
-            </div>
-          </DetailContainer>
-        )}
-        <Button text='홈으로 가기' onClick={handleNavigate} />
-      </ContentContainer>
-    </Wrapper>
-  );
+  if (!isLoading && data) {
+    return (
+      <Wrapper>
+        <ContentContainer>
+          <AIResultSvg />
+          <span className='title'>
+            {`단풍님은`} <span className='point-word'>식단 계획과 식품 관련</span>
+            {`\n도움이 필요할 것 같아요!`}
+          </span>
+          <img src={ResultPng} />
+          <span className='title'>관련된 맞춤형 미션을 제공해드릴게요</span>
+          <DetailBtn onClick={handleClick}>
+            자세한 분석 결과 보기 <ArrowBottomIcon />
+          </DetailBtn>
+          {open && (
+            <DetailContainer>
+              <span className='main-text'>종합 분석</span>
+              <div className='desc-container'>
+                <span>{detailData}</span>
+              </div>
+            </DetailContainer>
+          )}
+          <Button text='홈으로 가기' onClick={handleNavigate} />
+        </ContentContainer>
+      </Wrapper>
+    );
+  } else {
+    return (
+      <Wrapper style={{ height: '100vh' }}>
+        <LoadingModal />
+      </Wrapper>
+    );
+  }
 }
 
 export default AnalysisResult;
