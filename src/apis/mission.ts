@@ -1,7 +1,9 @@
 import { axiosFastInstance, axiosInstance } from './index.ts';
 import {
   CompletedMissionsRes,
-  GetAreaHomeRes, MissionDetailRes,
+  GetAreaHomeRes,
+  MissionData,
+  MissionDetailRes,
   MissionRecord,
   MissionRecordRes,
   OnGoingMission,
@@ -17,7 +19,11 @@ export const getAreaHome: () => Promise<GetAreaHomeRes> = async () => {
   }
 };
 
-export const postMissionRecord = async ({ id, content, feedback }: MissionRecord) => {
+export const postMissionRecord: ({}: MissionRecord) => Promise<MissionData> = async ({
+  id,
+  content,
+  feedback,
+}: MissionRecord) => {
   try {
     const res = await axiosInstance.post(
       '/missionRecord/create',
@@ -28,6 +34,7 @@ export const postMissionRecord = async ({ id, content, feedback }: MissionRecord
         },
       },
     );
+    console.log(res)
     return res.data;
   } catch (error) {
     console.error(error);
@@ -65,11 +72,13 @@ export const getCompletedMissions: () => Promise<CompletedMissionsRes> = async (
   }
 };
 
-export const postBuddyFeedback: (missionId: string) => Promise<MissionDetailRes> = async (missionId: string) => {
+export const postBuddyFeedback: (missionId: string) => Promise<MissionDetailRes> = async (
+  missionId: string,
+) => {
   try {
     const res = await axiosFastInstance.post(`/api/buddy-feedback?mission_id=${missionId}`);
-    return res.data
-  } catch ( error ) {
+    return res.data;
+  } catch (error) {
     console.error(error);
   }
-}
+};
