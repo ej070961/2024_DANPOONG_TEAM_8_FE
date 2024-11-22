@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { AreaType } from '../../@type/goal.ts';
 
 interface ConfirmContentProps {
   goalType: string;
@@ -10,7 +11,7 @@ const ConfirmContent = ({ goalType, image }: ConfirmContentProps) => {
     <ConfirmContentContainer>
       <TextBold>해당 영역을 목표로 지정할까요?</TextBold>
       <Image src={image} />
-      <TextBold style={{ marginTop: '40px' }}>{goalType} 마스터하기</TextBold>
+      <TextBold style={{ marginTop: '40px' }}>{AreaType[goalType]} 마스터하기</TextBold>
       <TextMedium>
         일상생활에 필요한 요리, 집 관리, 의복 관리 등의
         <br />

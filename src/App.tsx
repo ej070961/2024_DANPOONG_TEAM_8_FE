@@ -19,6 +19,7 @@ import SupportPage from './pages/support/SupportPage.tsx';
 import Auth from './pages/Auth/Auth.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AnalysisResult from './pages/goal/AnalysisResult.tsx';
+import GoalCompletePage from './pages/goal/GoalCompletePage.tsx';
 
 const queryClient = new QueryClient();
 
@@ -92,6 +93,10 @@ function App() {
           path: navigations.ANALYSISRESULT,
           element: <AnalysisResult />,
         },
+        {
+          path: navigations.GOAL_COMPLETE,
+          element: <GoalCompletePage />
+        }
       ],
     },
   ]);

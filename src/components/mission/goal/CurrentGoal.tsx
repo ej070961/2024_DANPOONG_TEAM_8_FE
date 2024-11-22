@@ -19,7 +19,7 @@ const CurrentGoal = () => {
   const type =
     AreaType[
       data!!.progressAreaType
-    ]; /*? AreaType[data?.progressAreaType] : AreaType['DAILY_LIFE'];*/
+    ];
 
   return (
     <>
@@ -33,7 +33,7 @@ const CurrentGoal = () => {
         </ProgressbarContainer>
       </GoalContainer>
       <MissionListText>자립목표 리스트</MissionListText>
-      <GoalList enabled={false} init={false} currentAreaType='DAILY_LIFE' />
+      <GoalList enabled={false} init={false} currentAreaType={data?.progressAreaType} />
     </>
   );
 };
