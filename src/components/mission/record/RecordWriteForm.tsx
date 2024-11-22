@@ -9,7 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getMissionRecord, postMissionRecord } from '../../../apis/mission.ts';
 import { MissionRecord } from '../../../@type/mission.ts';
-import Loading from '../../common/Loading.tsx';
+import Loading from '../../Common/Loading.tsx';
 import Comment from '../detail/Comment.tsx';
 
 const schema = yup.object().shape({

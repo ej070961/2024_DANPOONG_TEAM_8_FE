@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import MissionTabs from '../../components/mission/MissionTabs.tsx';
-import Toolbar from '../../components/common/Toolbar.tsx';
-import NavBar from '../../components/common/NavBar.tsx';
+import Toolbar from '../../components/Common/Toolbar.tsx';
+import NavBar from '../../components/Common/NavBar.tsx';
 
 const MissionPage = () => {
   return (

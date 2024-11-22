@@ -3,8 +3,8 @@ import GoalProgressbar from './GoalProgressbar.tsx';
 import { useQuery } from '@tanstack/react-query';
 import { getAreaHome } from '../../../apis/mission.ts';
 import { AreaType } from '../../../@type/goal.ts';
-import GoalList from '../../common/GoalList.tsx';
-import Loading from '../../common/Loading.tsx';
+import GoalList from '../../Common/GoalList.tsx';
+import Loading from '../../Common/Loading.tsx';
 
 const CurrentGoal = () => {
   const { data, isPending } = useQuery({

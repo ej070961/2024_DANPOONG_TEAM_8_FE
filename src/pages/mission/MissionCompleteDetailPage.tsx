@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import RecordDetail from '../../components/mission/detail/RecordDetail.tsx';
-import BackToolbar from '../../components/common/BackToolbar.tsx';
+import BackToolbar from '../../components/Common/BackToolbar.tsx';
 
 const MissionCompleteDetailPage = () => {
   return (
