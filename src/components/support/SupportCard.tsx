@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SupportProgram } from '../../types';
-import CardButton from '../Common/CardButton.tsx';
+import CardButton from '../common/CardButton.tsx';
 
 interface SupportProgramProps {
   support: SupportProgram;

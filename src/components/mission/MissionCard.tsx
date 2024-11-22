@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations.ts';
-import CardButton from '../Common/CardButton.tsx';
+import CardButton from '../common/CardButton.tsx';
 import GuideModal from './GuideModal.tsx';
 import { useState } from 'react';
 import { OnGoingMission } from '../../@type/mission.ts';

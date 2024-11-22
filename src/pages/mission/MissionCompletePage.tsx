@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import BackToolbar from '../../components/common/BackToolbar.tsx';
 import slime from '../../assets/images/slime.png';
-import CustomButton from '../../components/Common/CustomButton.tsx';
+import CustomButton from '../../components/common/CustomButton.tsx';
 import { useNavigate } from 'react-router-dom';
 
 const MissionCompletePage = () => {

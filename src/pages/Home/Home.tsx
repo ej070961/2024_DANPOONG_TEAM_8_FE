@@ -12,8 +12,8 @@ import { getHomeInfo } from '../../apis/home.ts';
 import { CharacterType } from '../../constant/character.ts';
 import MissionCard from '../../components/mission/MissionCard.tsx';
 import { AreaType } from '../../@type/goal.ts';
-import NavBar from '../../components/Common/NavBar.tsx';
-import Loading from '../../components/Common/Loading.tsx';
+import NavBar from '../../components/common/NavBar.tsx';
+import Loading from '../../components/common/Loading.tsx';
 
 function Home() {
   const { data, isPending } = useQuery({

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import CheckCardList from '../../components/goal/CheckCardList.tsx';
 import CheckGuide from '../../components/goal/CheckGuide.tsx';
-import BackToolbar from '../../components/Common/BackToolbar.tsx';
+import BackToolbar from '../../components/common/BackToolbar.tsx';
 import { useLocation } from 'react-router-dom';
 
 const GoalPreCheckPage = () => {

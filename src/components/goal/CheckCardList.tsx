@@ -1,9 +1,9 @@
 import { checkList } from '../../apis/mocks/checkList.ts';
 import CheckCard from './CheckCard.tsx';
 import styled from 'styled-components';
-import CustomButton from '../Common/CustomButton.tsx';
+import CustomButton from '../common/CustomButton.tsx';
 import { useState } from 'react';
-import { sendCheckListData } from '../../apis/goal.ts';
+import { getCheckListAnalysisResult, sendCheckListData } from '../../apis/goal.ts';
 import LoadingModal from './LoadingModal.tsx';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore.ts';
