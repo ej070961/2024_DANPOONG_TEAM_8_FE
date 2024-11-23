@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import BackToolbar from '../../components/common/BackToolbar.tsx';
-import slime from '/src/assets/images/complete-slime.png';
+import slime from '../../assets/images/complete-slime.png';
 import CustomButton from '../../components/common/CustomButton.tsx';
 import { useNavigate } from 'react-router-dom';
 
