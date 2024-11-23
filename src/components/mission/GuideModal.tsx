@@ -1,19 +1,18 @@
-import { Divider, Modal } from '@mui/material';
+import { Divider } from '@mui/material';
 import styled from 'styled-components';
 import { OnGoingMission } from '../../@type/mission.ts';
 import theme from '../../styles/theme.ts';
 
 interface GuideModalProps {
-  open: boolean;
   handleClose: () => void;
   mission?: OnGoingMission;
 }
 
-const GuideModal = ({ open, handleClose, mission }: GuideModalProps) => {
+const GuideModal = ({ handleClose, mission }: GuideModalProps) => {
   return (
-    <Modal open={open} onClose={handleClose} sx={{ border: 'none', borderRadius: 0, }}>
+    <Overlay>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
-        <CancelIcon src='/src/assets/svg/cancel.svg' onClick={handleClose}/>
+        <CancelIcon src='/src/assets/svg/cancel.svg' onClick={handleClose} />
         <MissionName>{mission?.missionName}</MissionName>
         <Description>{mission?.description}</Description>
         <Duration>
@@ -33,11 +32,23 @@ const GuideModal = ({ open, handleClose, mission }: GuideModalProps) => {
           ))}
         </StepContainer>
       </ModalContainer>
-    </Modal>
+    </Overlay>
   );
 };
 
 export default GuideModal;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 50%; /* X축 기준으로 가운데 정렬 */
+  transform: translateX(-50%); /* X축 정렬을 위해 사용 */
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  max-width: 480px;
+  background: rgba(0, 0, 0, 0.4);
+`;
 
 const ModalContainer = styled.div`
   position: absolute;
@@ -58,9 +69,12 @@ const ModalContainer = styled.div`
 `;
 
 const MissionName = styled.div`
+  width: 210px;
   font: ${({ theme }) => theme.fonts.heading_sb_20px};
   color: ${({ theme }) => theme.colors.gray900};
   text-align: center;
+
+  margin: auto;
   margin-top: 12px;
 `;
 
@@ -99,9 +113,9 @@ const SlimeComment = styled.div`
   font: ${({ theme }) => theme.fonts.body_m_14px};
   color: white;
   text-align: center;
-  padding: 13px 31px;
+  padding: 13px 20px;
   border: none;
-  border-radius: 30px;
+  border-radius: 25px;
   background-color: ${({ theme }) => theme.colors.gray600};
 `;
 
@@ -146,4 +160,4 @@ const CancelIcon = styled.img`
   right: 22px;
   width: 18px;
   height: 18px;
-`
+`;

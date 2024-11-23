@@ -25,14 +25,43 @@ function AnalysisResult() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const jsonString = data.report.report[0].analysis.content;
-      // 문자열에서 ```json과 ``` 제거
-      const cleanedResponse = jsonString.replace(/```json|```/g, '');
+      try {
+        const content = data?.report.report[0].analysis;
 
-      const parsedData = JSON.parse(cleanedResponse); // JSON 파싱
-      console.log(parsedData.content);
-      setDetailData(parsedData.content); // content 필드 접근
+        // JSON인지 문자열인지 판단
+        if (typeof content === 'object') {
+          if (typeof content.content === 'string') {
+            // JSON 객체라면 바로 세팅
+            console.log(content.content);
+            setDetailData(content.content);
+          } else {
+            setDetailData('알 수 없는 응답 형식입니다. 관리자에게 문의하세요.');
+          }
+        } else if (typeof content === 'string') {
+          // 문자열이라면 ```json과 ```를 제거하고 JSON 파싱 시도
+          const cleanedResponse = content.includes('```')
+            ? content.replace(/```json|```/g, '')
+            : content;
+
+          try {
+            const parsedData = JSON.parse(cleanedResponse); // JSON 파싱
+            console.log(parsedData.content);
+            setDetailData(parsedData.content);
+          } catch (error) {
+            console.error('JSON 파싱 실패:', error);
+            setDetailData('응답 데이터를 처리할 수 없습니다. 관리자에게 문의하세요.');
+          }
+        } else {
+          // 다른 형식일 경우 메시지 표시
+          console.warn('알 수 없는 데이터 형식:', content);
+          setDetailData('알 수 없는 응답 형식입니다. 관리자에게 문의하세요.');
+        }
+      } catch (error) {
+        console.error('데이터를 처리하는 중 오류 발생:', error);
+        setDetailData('데이터를 불러오는 중 오류가 발생했습니다.');
+      }
     };
+
     if (!isLoading && data) {
       fetchData();
     }
@@ -56,7 +85,8 @@ function AnalysisResult() {
         <ContentContainer>
           <AIResultSvg />
           <span className='title'>
-            {`단풍님은`} <span className='point-word'>식단 계획과 식품 관련</span>
+            {`단풍님은`}{' '}
+            <span className='point-word'>{`${data.report.report[0].lowest_scores[0].keyword}과 ${data.report.report[0].lowest_scores[1].keyword}`}</span>
             {`\n도움이 필요할 것 같아요!`}
           </span>
           <img src={ResultPng} />
