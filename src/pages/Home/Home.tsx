@@ -24,7 +24,7 @@ function Home() {
   const navigation = useNavigate();
   const [sentenceIndex, setSentenceIndex] = useState(0); // 현재 문장 인덱스 관리
 
-  if (isPending) {
+  if (isPending && !data) {
     return (
       <Wrapper>
         <Loading />
@@ -34,8 +34,11 @@ function Home() {
 
   const character = data?.character!!;
   const mission = data?.mission!!;
+
   const characterImage =
-    character.level < 5 ? CharacterLevel[character.level] : CharacterType[character.characterType];
+    character && character.level < 5
+      ? CharacterLevel[character.level]
+      : CharacterType[character.characterType];
 
   const handleNavigate = () => {
     navigation(navigations.CHAT, {

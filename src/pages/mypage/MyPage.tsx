@@ -8,7 +8,7 @@ function MyPage() {
   const { logout } = useAuthStore();
 
   const { isLoading, data } = useQuery({
-    queryKey: ['home'],
+    queryKey: ['my'],
     queryFn: () => getUserData(),
   });
 
