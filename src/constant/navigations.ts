@@ -17,4 +17,5 @@ export const navigations = {
   AUTH: '/auth',
   ANALYSISRESULT: 'analysis-result',
   GOAL_COMPLETE: '/goal/complete',
+  MY: '/my-page',
 };
