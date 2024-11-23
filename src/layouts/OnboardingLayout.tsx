@@ -19,7 +19,7 @@ function OnboardingLayout({ stepIndex, title, description, navigatePath, imagePa
         <h3 className='title'>{title}</h3>
         <span className='desc'>{description}</span>
       </Container>
-      <img src={imagePath} width={'90%'} />
+      <img src={imagePath} width={'75%'} />
       <StatusBar step={stepIndex} />
       <Button text='다음' onClick={() => navigate(navigatePath)} />
     </Wrapper>
