@@ -3,6 +3,10 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    },
+    {
+      "source": ["/api/ask", "/generate-missions", "/api/buddy-feedback"],
+      "destination": "http://3.208.248.230:3000"
     }
   ]
 }
