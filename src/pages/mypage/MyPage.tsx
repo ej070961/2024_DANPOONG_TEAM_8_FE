@@ -7,7 +7,7 @@ import { getUserData } from '../../apis/user';
 function MyPage() {
   const { logout } = useAuthStore();
 
-  const { isLoading, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ['my'],
     queryFn: () => getUserData(),
   });

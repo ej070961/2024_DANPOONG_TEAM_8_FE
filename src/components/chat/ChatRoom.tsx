@@ -39,11 +39,12 @@ const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: 0 16px;
 `;
 
 const ChatContainer = styled.div`
   flex: 1;
-  padding: 18px 16px;
+  padding: 18px 0;
   margin-bottom: 100px;
   overflow-y: scroll;
   display: flex;
