@@ -21,7 +21,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AnalysisResult from './pages/goal/AnalysisResult.tsx';
 import GoalCompletePage from './pages/goal/GoalCompletePage.tsx';
 import MyPage from './pages/mypage/MyPage.tsx';
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 const queryClient = new QueryClient();
 
 function App() {
@@ -111,6 +111,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <GlobalStyle />
         <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </>
   );
