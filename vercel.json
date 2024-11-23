@@ -2,15 +2,15 @@
   "rewrites": [
     {
       "source": "/api/ask",
-      "destination": "http://3.208.248.230:3000/api/ask"
+      "destination": "http://43.202.12.235:3000/api/ask"
     },
     {
       "source": "/generate-missions",
-      "destination": "http://3.208.248.230:3000/generate-missions"
+      "destination": "http://43.202.12.235:3000/generate-missions"
     },
     {
       "source": "/api/buddy-feedback",
-      "destination": "http://3.208.248.230:3000/api/buddy-feedback"
+      "destination": "http://43.202.12.235:3000/api/buddy-feedback"
     },
     {
       "source": "/(.*)",
