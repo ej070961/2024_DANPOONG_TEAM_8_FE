@@ -17,7 +17,7 @@ const Container = styled.div`
   display: flex;
   gap: 8px;
   margin: auto 0;
-  bottom: 120px;
+  bottom: 110px;
 `;
 const ItemBox = styled.div<{ $active: boolean }>`
   height: 100%;
