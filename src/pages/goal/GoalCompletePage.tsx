@@ -10,14 +10,19 @@ const GoalCompletePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { level, areaName, characterType } = location.state || {};
-  console.log('areaName: ', areaName)
-  console.log(characterType)
-  console.log(CharacterType[characterType])
+  console.log('areaName: ', areaName);
+  console.log(characterType);
+  console.log(CharacterType[characterType]);
   const character = level < 5 ? CharacterLevel[level] : CharacterType[characterType];
 
   const handleNavigate = () => {
     navigate(navigations.GOAL, { replace: true });
   };
+
+  const handleNavigateHome = () => {
+    navigate(navigations.HOME, { replace: true });
+  };
+
   return (
     <GoalCompletionContainer>
       <BackToolbar title=' ' />
@@ -32,7 +37,11 @@ const GoalCompletePage = () => {
         <TextLarge style={{ paddingTop: '41px' }}>버디가 한 층 더 성장했어요!</TextLarge>
       </ContentContainer>
       <ButtonContainer>
-        <CustomButton label='다음 목표 설정하러가기' isValid={true} onClick={handleNavigate} />
+        <CustomButton
+          label={areaName === 'ALL' ? '홈으로 이동!' : '다음 목표 설정하러가기'}
+          isValid={true}
+          onClick={areaName === 'ALL' ? handleNavigateHome : handleNavigate}
+        />
       </ButtonContainer>
     </GoalCompletionContainer>
   );
