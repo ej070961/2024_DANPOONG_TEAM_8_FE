@@ -51,8 +51,15 @@ function NavBar() {
           />
           지원제도
         </MenuBtn>
-        <MenuBtn $active={false}>
-          <MyIcon color={theme.colors.gray400} />
+        <MenuBtn
+          $active={location.pathname === navigations.MY}
+          onClick={() => navigate(navigations.MY, { replace: true })}
+        >
+          <MyIcon
+            color={
+              location.pathname === navigations.MY ? theme.colors.primary : theme.colors.gray400
+            }
+          />
           마이
         </MenuBtn>
       </Container>
