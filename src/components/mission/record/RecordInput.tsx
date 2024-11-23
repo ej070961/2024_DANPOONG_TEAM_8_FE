@@ -14,7 +14,7 @@ interface TextInputProps {
   error?: string;
 }
 
-const RecordInput = ({ title, register, name }: TextInputProps) => {
+const RecordInput = ({ title, register, name, error }: TextInputProps) => {
   const [length, setLength] = useState(0);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,7 +33,10 @@ const RecordInput = ({ title, register, name }: TextInputProps) => {
           handleChange(event);
         }}
       />
-      <TextLength $length={length}>{length}/200</TextLength>
+      <BottomContentContainer>
+        <ErrorMessage>{error}</ErrorMessage>
+        <TextLength $length={length}>{length}/200</TextLength>
+      </BottomContentContainer>
     </TextInputContainer>
   );
 };
@@ -65,10 +68,22 @@ const InputArea = styled.textarea`
   font: ${({ theme }) => theme.fonts.body_m_16px};
 `;
 
+const BottomContentContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ErrorMessage = styled.div`
+  font: ${({ theme }) => theme.fonts.body_m_14px};
+  color: red;
+  margin-left: 10px;
+`;
+
 const TextLength = styled.div<{ $length: number }>`
   margin-top: 6px;
   font: ${({ theme }) => theme.fonts.body_m_14px};
-  color: ${({ $length, theme }) => $length > 0 ? theme.colors.gray600 : theme.colors.gray300};
+  color: ${({ $length, theme }) => ($length > 0 ? theme.colors.gray600 : theme.colors.gray300)};
   align-self: flex-end;
   margin-right: 10px;
 `;
