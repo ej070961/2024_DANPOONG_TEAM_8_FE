@@ -72,6 +72,7 @@ const RecordWriteForm = () => {
     if (missionData?.allCompleted) {
       navigate(navigations.GOAL_COMPLETE, {
         state: {
+          level: missionData.characterResponseDTOForMission.level,
           areaName: missionData.missionResponse2DTO.areaName,
           characterType: missionData.characterResponseDTOForMission.characterType,
         },

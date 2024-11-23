@@ -2,18 +2,18 @@ import styled, { keyframes } from 'styled-components';
 import BackToolbar from '../../components/common/BackToolbar.tsx';
 import CustomButton from '../../components/common/CustomButton.tsx';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CharacterType } from '../../constant/character.ts';
+import { CharacterLevel, CharacterType } from '../../constant/character.ts';
 import { navigations } from '../../constant/navigations.ts';
 import { AreaType } from '../../@type/goal.ts';
 
 const GoalCompletePage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { areaName, characterType } = location.state || {};
+  const { level, areaName, characterType } = location.state || {};
   console.log('areaName: ', areaName)
   console.log(characterType)
   console.log(CharacterType[characterType])
-  const character = CharacterType[characterType];
+  const character = level < 5 ? CharacterLevel[level] : CharacterType[characterType];
 
   const handleNavigate = () => {
     navigate(navigations.GOAL, { replace: true });
@@ -68,6 +68,7 @@ const TextLarge = styled.div`
 const TextSmall = styled.div`
   font: ${({ theme }) => theme.fonts.body_m_16px};
   color: ${({ theme }) => theme.colors.gray500};
+  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
