@@ -107,8 +107,8 @@ const ContentContainer = styled.div`
     margin-top: 14px;
   }
   .loader-text {
-    ${({ theme }) => theme.fonts.heading_sb_24px}
-    color:${({ theme }) => theme.colors.gray900}
+    ${({ theme }) => theme.fonts.heading_sb_24px};
+    color: ${({ theme }) => theme.colors.gray900};
     margin: auto;
     white-space: pre-line; /* 줄바꿈을 반영 */
     text-align: center; /* 중앙 정렬 */
