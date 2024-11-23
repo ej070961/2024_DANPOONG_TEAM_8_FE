@@ -1,4 +1,4 @@
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Step0 from './step0';
 import Step1 from './step1';
 import Step2 from './step2';

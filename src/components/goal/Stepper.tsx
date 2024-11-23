@@ -5,7 +5,7 @@ interface StepperProps {
   score: number;
   onScoreChange: (score: number) => void;
 }
-const Stepper = ({ score, onScoreChange }: StepperProps) => {
+const Stepper = ({ onScoreChange }: StepperProps) => {
   const [steps, setSteps] = useState([false, false, false, false]);
 
   const handleStepClick = (index: number) => {
