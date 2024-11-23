@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '../../store/useAuthStore';
-import Login from '../Login/Login';
 import { axiosInstance } from '../../apis';
 import { useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations';
 
 function Auth() {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
   useEffect(() => {
     const fetchLogin = async () => {
       const query = new URLSearchParams(location.search);
@@ -23,15 +23,14 @@ function Auth() {
           kakaoId: kakaoId,
           nickname: nickname,
         });
-        Login();
+        login();
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        console.log(nickname);
 
         if (hasCharacter === 'true') {
           navigate(navigations.ONBOARDING);
-          localStorage.setItem('init', 'True');
         } else {
           navigate(navigations.INITIALSETUP);
+          localStorage.setItem('init', 'True');
         }
       }
     };
