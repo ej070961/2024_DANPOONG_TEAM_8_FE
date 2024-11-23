@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import BackgroundImg from '../../assets/images/home_bg.png';
-import MissionInfo from '../../components/Home/MissionInfo';
+import MissionInfo from '../../components/Home/MissionInfo.tsx';
 import ChatIcon from '../../assets/icon/chat-icon';
 import ChatIntroSvg from '../../assets/svg/chat-intro.svg?react';
 import StarSvg from '../../assets/svg/star.svg?react';
@@ -14,6 +14,7 @@ import MissionCard from '../../components/mission/MissionCard.tsx';
 import { AreaType } from '../../@type/goal.ts';
 import NavBar from '../../components/common/NavBar.tsx';
 import Loading from '../../components/common/Loading.tsx';
+import { useState } from 'react';
 
 function Home() {
   const { data, isPending } = useQuery({
@@ -21,6 +22,7 @@ function Home() {
     queryFn: () => getHomeInfo(),
   });
   const navigation = useNavigate();
+  const [sentenceIndex, setSentenceIndex] = useState(0); // 현재 문장 인덱스 관리
 
   if (isPending) {
     return (
@@ -44,6 +46,19 @@ function Home() {
     });
   };
 
+  const SentenceSet = [
+    '오늘은 무슨 일 없었어?',
+    '안녕! 오늘 기분은 어때?',
+    '넌 정말 잘하고 있어!',
+    '오늘 뭔가 재밌는 일이 있었을까?',
+    '어떤 하루를 보냈는지 들려줄래?',
+  ];
+
+  // 문장 변경 함수
+  const handleNextSentence = () => {
+    setSentenceIndex((prevIndex) => (prevIndex + 1) % SentenceSet.length); // 다음 문장으로 이동, 마지막 문장 후 처음으로
+  };
+
   return (
     <Wrapper>
       <ContentContainer>
@@ -62,7 +77,9 @@ function Home() {
         {/* 캐릭터 영역 */}
         <CharacterWrapper />
         <CharacterSection>
-          <button className='msg-wrapper'>오늘은 무슨 일 없었어?</button>
+          <button className='msg-wrapper' onClick={handleNextSentence}>
+            {SentenceSet[sentenceIndex]}
+          </button>
           <PolygonSvg />
           <ImgContainer>
             <StyledStar left={80} top={10} />
@@ -222,6 +239,9 @@ const CharacterSection = styled.section`
 
     ${({ theme }) => theme.fonts.body_m_18px};
     color: ${({ theme }) => theme.colors.gray900};
+
+    white-space: pre-line; /* 줄바꿈을 반영 */
+    text-align: center; /* 중앙 정렬 */
   }
 
   .name-wrapper {
