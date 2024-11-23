@@ -1,12 +1,26 @@
 import styled from 'styled-components';
 import ArrowRightIcon from '../../assets/icon/arrow-right';
 import NavBar from '../../components/common/NavBar';
+import { useAuthStore } from '../../store/useAuthStore';
+import { useQuery } from '@tanstack/react-query';
+import { getUserData } from '../../apis/user';
 function MyPage() {
+  const { logout } = useAuthStore();
+
+  const { isLoading, data } = useQuery({
+    queryKey: ['home'],
+    queryFn: () => getUserData(),
+  });
+
+  const handleLogout = () => {
+    logout();
+    window.location.href = '/login';
+  };
   return (
     <Wrapper>
       <ContentContainer>
-        <span className='nickname'>단풍님</span>
-        <LogoutBtn>
+        <span className='nickname'>{data?.nickname}님</span>
+        <LogoutBtn onClick={handleLogout}>
           로그아웃
           <ArrowRightIcon />
         </LogoutBtn>
@@ -31,14 +45,15 @@ const ContentContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 16px;
+  padding: 19px 16px 0 16px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-left: 5px;
+
   .nickname {
     ${({ theme }) => theme.fonts.heading_sb_24px};
     color: ${({ theme }) => theme.colors.gray900};
+    margin-left: 8px;
   }
 `;
 

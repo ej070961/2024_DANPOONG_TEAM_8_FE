@@ -26,6 +26,9 @@ export const useAuthStore = create<AuthStore>()(
         set({
           isLoggedIn: false,
           accessToken: null,
+          refreshToken: null,
+          kakaoId: null,
+          nickname: null,
         }),
       accessToken: '',
       refreshToken: '',
