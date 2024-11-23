@@ -79,7 +79,6 @@ function Home() {
               missionType={AreaType[mission.areaName]}
               missionName={mission.missionName}
               isComplete={mission.completed}
-              isHome={true}
               mission={mission}
             />
           )}

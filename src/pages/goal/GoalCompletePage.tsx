@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import BackToolbar from '../../components/Common/BackToolbar.tsx';
-import CustomButton from '../../components/Common/CustomButton.tsx';
+import BackToolbar from '../../components/common/BackToolbar.tsx';
+import CustomButton from '../../components/common/CustomButton.tsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CharacterType } from '../../constant/character.ts';
 import { navigations } from '../../constant/navigations.ts';
