@@ -119,13 +119,12 @@ export default AnalysisResult;
 
 const Wrapper = styled.div`
   width: 100vw;
+  height: 100vh;
   max-width: 480px;
 
   display: flex;
   flex-direction: column;
   background: #ffffff;
-
-  background-size: 100vw 100vh;
 `;
 const ContentContainer = styled.div`
   position: relative;
