@@ -29,7 +29,7 @@ function OnboardingLayout({ stepIndex, title, description, navigatePath, imagePa
 export default OnboardingLayout;
 const Wrapper = styled.div`
   width: 100vw;
-  max-width: 400px;
+  max-width: 480px;
   height: 100vh;
 
   display: flex;
