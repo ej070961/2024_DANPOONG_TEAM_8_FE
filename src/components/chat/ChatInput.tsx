@@ -61,25 +61,23 @@ const ChatInput = () => {
   };
 
   return (
-    <>
-      <InputContainer>
-        <ChatTextArea
-          ref={textAreaRef}
-          value={value}
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
-          onKeyUp={handleKeyUp}
-          placeholder='메세지를 입력해주세요'
-        />
-        <SendButton
-          className={value.trim() ? 'visible' : ''}
-          onClick={handleSendMessage}
-          disabled={!value.trim()}
-        >
-          <img src={sendIcon} alt='Send' />
-        </SendButton>
-      </InputContainer>
-    </>
+    <InputContainer>
+      <ChatTextArea
+        ref={textAreaRef}
+        value={value}
+        onChange={handleInput}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        placeholder='메세지를 입력해주세요'
+      />
+      <SendButton
+        className={value.trim() ? 'visible' : ''}
+        onClick={handleSendMessage}
+        disabled={!value.trim()}
+      >
+        <img src={sendIcon} alt='Send' />
+      </SendButton>
+    </InputContainer>
   );
 };
 
@@ -87,6 +85,8 @@ export default ChatInput;
 
 const InputContainer = styled.div`
   position: fixed;
+  width: 100vw;
+  max-width: 480px;
   bottom: 32px;
   left: 18px;
   right: 18px;
@@ -95,6 +95,8 @@ const InputContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 30px;
   padding: 0 16px; /* 좌우 패딩으로 간격 확보 */
+  left: 50%; /* X축 기준으로 가운데 정렬 */
+  transform: translateX(-50%); /* X축 정렬을 위해 사용 */
 `;
 
 const ChatTextArea = styled.textarea`
