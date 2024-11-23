@@ -253,6 +253,7 @@ const CharacterSection = styled.section`
     height: 35px;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(9.83607px);
+    margin-top: -10px;
     border-radius: 22.9508px;
 
     ${({ theme }) => theme.fonts.body_m_14px};
