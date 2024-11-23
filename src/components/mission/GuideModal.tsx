@@ -2,6 +2,8 @@ import { Divider } from '@mui/material';
 import styled from 'styled-components';
 import { OnGoingMission } from '../../@type/mission.ts';
 import theme from '../../styles/theme.ts';
+import guideSlime from '../../assets/images/guide-slime.png';
+import cancel from '../../assets/svg/cancel.svg';
 
 interface GuideModalProps {
   handleClose: () => void;
@@ -12,7 +14,7 @@ const GuideModal = ({ handleClose, mission }: GuideModalProps) => {
   return (
     <Overlay>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
-        <CancelIcon src='/src/assets/svg/cancel.svg' onClick={handleClose} />
+        <CancelIcon src={cancel} onClick={handleClose} />
         <MissionName>{mission?.missionName}</MissionName>
         <Description>{mission?.description}</Description>
         <Duration>
@@ -20,7 +22,7 @@ const GuideModal = ({ handleClose, mission }: GuideModalProps) => {
         </Duration>
         <Divider color={theme.colors.gray100} style={{ marginTop: '17px' }} />
         <ImageContainer>
-          <Image src={'/src/assets/images/guide-slime.png'} />
+          <Image src={guideSlime} />
           <SlimeComment>단계별로 수행 방법을 알려줄게</SlimeComment>
         </ImageContainer>
         <StepContainer>

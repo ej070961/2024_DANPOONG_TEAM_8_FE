@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import ChatRoom from '../../components/chat/ChatRoom.tsx';
 import BackToolbar from '../../components/common/BackToolbar.tsx';
 import { useLocation } from 'react-router-dom';
+import chatbotBottomBg from '../../assets/svg/chatbot_bottom_bg.svg';
+import chatbotBg from '../../assets/images/chatbot_bg.png';
 
 const ChatbotPage = () => {
   const location = useLocation();
@@ -10,7 +12,7 @@ const ChatbotPage = () => {
   return (
     <ChatbotContainer>
       <BackToolbar title={characterName} isWhite={true} />
-      <BackgroundImage src={'/src/assets/svg/chatbot_bottom_bg.svg'} />
+      <BackgroundImage src={chatbotBottomBg} />
       <ChatbotImage src={image} alt='chatbot' />
       <ChatRoom />
     </ChatbotContainer>
@@ -20,7 +22,7 @@ const ChatbotPage = () => {
 export default ChatbotPage;
 
 const ChatbotContainer = styled.div`
-  background-image: url('/src/assets/images/chatbot_bg.png');
+  background-image: url(${chatbotBg});
   background-size: cover;
   display: flex;
   flex-direction: column;
