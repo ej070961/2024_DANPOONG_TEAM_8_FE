@@ -25,9 +25,9 @@ const CommentContainer = styled.div<{ $completed: boolean }>`
   flex-direction: column;
   align-items: center;
   padding: 36px 18px 30px 18px;
-  border: ${({ $completed, theme }) => $completed ? `2px solid ${theme.colors.gray200}` : 'none'};
+  border: ${({ $completed, theme }) => ($completed ? `2px solid ${theme.colors.gray200}` : 'none')};
   border-radius: 28px;
-  background-color: ${({ $completed, theme }) => $completed ? 'white' : theme.colors.gray100};
+  background-color: ${({ $completed, theme }) => ($completed ? 'white' : theme.colors.gray100)};
 `;
 
 const Tag = styled.span`
@@ -41,7 +41,7 @@ const Tag = styled.span`
   border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.primary};
   font: ${({ theme }) => theme.fonts.body_m_14px};
-  color: 'white';
+  color: #ffffff;
 `;
 
 const Image = styled.img`
