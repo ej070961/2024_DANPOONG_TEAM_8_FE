@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuthStore } from '../store/useAuthStore.ts';
 
 export const axiosInstance = axios.create({
-  baseURL: 'https://port-0-test-m3kd03l2a7de4974.sel4.cloudtype.app',
+  baseURL: import.meta.env.VITE_SPRING_BOOT_SERVER_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -19,7 +19,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 export const axiosFastInstance = axios.create({
-  baseURL: 'http://3.208.248.230:3000',
+  baseURL: import.meta.env.VITE_FAST_SERVER_URL,
   headers: {
     accept: 'application/json',
     'Content-Type': 'application/json',
