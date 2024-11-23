@@ -33,7 +33,7 @@ const RecordInput = ({ title, register, name }: TextInputProps) => {
           handleChange(event);
         }}
       />
-      <TextLength>{length}/200</TextLength>
+      <TextLength $length={length}>{length}/200</TextLength>
     </TextInputContainer>
   );
 };
@@ -65,10 +65,10 @@ const InputArea = styled.textarea`
   font: ${({ theme }) => theme.fonts.body_m_16px};
 `;
 
-const TextLength = styled.div`
+const TextLength = styled.div<{ $length: number }>`
   margin-top: 6px;
   font: ${({ theme }) => theme.fonts.body_m_14px};
-  color: ${({ theme }) => theme.colors.gray300};
+  color: ${({ $length, theme }) => $length > 0 ? theme.colors.gray600 : theme.colors.gray300};
   align-self: flex-end;
   margin-right: 10px;
 `;
