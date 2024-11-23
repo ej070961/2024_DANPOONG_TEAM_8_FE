@@ -12,7 +12,8 @@ interface GuideModalProps {
 const GuideModal = ({ open, handleClose, mission }: GuideModalProps) => {
   return (
     <Modal open={open} onClose={handleClose} sx={{ border: 'none', borderRadius: 0, }}>
-      <ModalContainer>
+      <ModalContainer onClick={(e) => e.stopPropagation()}>
+        <CancelIcon src='/src/assets/svg/cancel.svg' onClick={handleClose}/>
         <MissionName>{mission?.missionName}</MissionName>
         <Description>{mission?.description}</Description>
         <Duration>
@@ -138,3 +139,11 @@ const Step = styled.div`
   font: ${({ theme }) => theme.fonts.body_m_16px};
   color: ${({ theme }) => theme.colors.gray900};
 `;
+
+const CancelIcon = styled.img`
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 18px;
+  height: 18px;
+`

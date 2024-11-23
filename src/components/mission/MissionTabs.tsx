@@ -45,6 +45,7 @@ const StyledTabs = styled(Tabs)`
     color: ${({ theme }) => theme.colors.gray900} !important;
     font: ${({ theme }) => theme.fonts.body_sb_18px};
     border: none;
+    font-weight: bold;
   }
 
   .MuiTab-selected.Mui-focusVisible {
