@@ -4,6 +4,7 @@ import { useFetchMissions } from '../../hooks/useFetchMissions.ts';
 import Loading from '../common/Loading.tsx';
 import { CompletedMission, OnGoingMission } from '../../@type/mission.ts';
 import { AreaType } from '../../@type/goal.ts';
+import slime2 from '../../assets/images/slime2.png';
 
 interface MissionListProps {
   type: 'onGoing' | 'completed';
@@ -31,7 +32,7 @@ const MissionList = ({ type }: MissionListProps) => {
       {data?.length === 0 && (
         <NonMissionContainer>
           <NoneMissionText>아직 완료한 미션이 없어요!</NoneMissionText>
-          <Image src={'/src/assets/images/slime2.png'} />
+          <Image src={slime2} />
         </NonMissionContainer>
       )}
     </MissionListContainer>

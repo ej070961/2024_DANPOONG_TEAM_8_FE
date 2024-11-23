@@ -41,7 +41,7 @@ const Tag = styled.span`
   border-radius: 30px;
   background-color: ${({ theme }) => theme.colors.primary};
   font: ${({ theme }) => theme.fonts.body_m_14px};
-  color: 'white;
+  color: 'white';
 `;
 
 const Image = styled.img`
