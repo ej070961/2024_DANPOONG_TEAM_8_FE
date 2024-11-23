@@ -17,9 +17,6 @@ function Auth() {
       const kakaoId = query.get('kakaoId');
 
       if (accessToken && refreshToken && hasCharacter && nickname && kakaoId) {
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-
         useAuthStore.setState({
           accessToken: accessToken,
           refreshToken: refreshToken,
@@ -31,7 +28,8 @@ function Auth() {
         console.log(nickname);
 
         if (hasCharacter === 'true') {
-          navigate(navigations.HOME);
+          navigate(navigations.ONBOARDING);
+          localStorage.setItem('init', 'True');
         } else {
           navigate(navigations.INITIALSETUP);
         }

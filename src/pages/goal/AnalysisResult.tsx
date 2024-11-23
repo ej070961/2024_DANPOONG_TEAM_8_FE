@@ -8,6 +8,7 @@ import Button from '../../components/common/Button';
 import { useQuery } from '@tanstack/react-query';
 import { getCheckListAnalysisResult } from '../../apis/goal';
 import LoadingModal from '../../components/goal/LoadingModal';
+import { navigations } from '../../constant/navigations';
 function AnalysisResult() {
   const [open, setOpen] = useState(false);
 
@@ -42,7 +43,12 @@ function AnalysisResult() {
   };
 
   const handleNavigate = () => {
-    navigate('/home');
+    //최초 로그인 시 온보딩 화면으로 이동
+    if (localStorage.getItem('init') === 'True') {
+      navigate(navigations.ONBOARDING);
+    } else {
+      navigate(navigations.HOME);
+    }
   };
   if (!isLoading && data) {
     return (

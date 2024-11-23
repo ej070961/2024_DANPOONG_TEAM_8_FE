@@ -2,7 +2,7 @@ import styled from 'styled-components';
 function StatusBar({ step }: { step: number }) {
   return (
     <Container>
-      {Array.from({ length: 3 }, (_, index) => (
+      {Array.from({ length: 4 }, (_, index) => (
         <ItemBox key={index} $active={step === index + 1} />
       ))}
     </Container>
@@ -13,7 +13,6 @@ export default StatusBar;
 
 const Container = styled.div`
   position: absolute;
-  width: 56px;
   height: 8px;
   display: flex;
   gap: 8px;
