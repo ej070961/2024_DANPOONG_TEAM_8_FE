@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import AIResultSvg from '../../assets/svg/ai-result.svg?react';
 import ArrowBottomIcon from '../../assets/svg/arrow-bottom.svg?react';
