@@ -42,11 +42,7 @@ const MissionCard = ({ id, missionType, missionName, isComplete, mission }: Miss
   return (
     <>
       <MissionContainer onClick={isComplete ? handleNavigateDetailPage : handleOpen}>
-        <GuideModal
-          open={isComplete ? false : open}
-          handleClose={handleClose}
-          mission={mission!!}
-        />
+        {open && <GuideModal handleClose={handleClose} mission={mission!!} />}
         <MissionType>{missionType}</MissionType>
         <MissionTitle>{missionName}</MissionTitle>
         <ButtonContainer>

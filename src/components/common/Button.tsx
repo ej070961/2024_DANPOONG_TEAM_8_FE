@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-type ButtonProps = {
+interface ButtonProps {
   disabled?: boolean;
   text: string;
   onClick: () => void;
-};
+}
 function Button({ disabled, text, onClick }: ButtonProps) {
   return (
     <ButtonWrapper>
