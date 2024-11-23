@@ -5,9 +5,17 @@ export const axiosInstance = axios.create({
   baseURL: 'https://port-0-test-m3kd03l2a7de4974.sel4.cloudtype.app',
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${useAuthStore.getState().accessToken!}`,
   },
   withCredentials: true,
+});
+
+// 요청 인터셉터 추가
+axiosInstance.interceptors.request.use((config) => {
+  const accessToken = useAuthStore.getState().accessToken;
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return config;
 });
 
 export const axiosFastInstance = axios.create({
@@ -15,7 +23,14 @@ export const axiosFastInstance = axios.create({
   headers: {
     accept: 'application/json',
     'Content-Type': 'application/json',
-    'kakao-id': useAuthStore.getState().kakaoId,
   },
   //withCredentials: true,
+});
+
+axiosFastInstance.interceptors.request.use((config) => {
+  const kakaoId = useAuthStore.getState().kakaoId;
+  if (kakaoId) {
+    config.headers['kakao-id'] = kakaoId;
+  }
+  return config;
 });

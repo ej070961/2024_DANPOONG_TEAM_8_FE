@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { navigations } from '../../constant/navigations.ts';
 import { useQuery } from '@tanstack/react-query';
 import { getHomeInfo } from '../../apis/home.ts';
-import { CharacterType } from '../../constant/character.ts';
+import { CharacterLevel, CharacterType } from '../../constant/character.ts';
 import MissionCard from '../../components/mission/MissionCard.tsx';
 import { AreaType } from '../../@type/goal.ts';
 import NavBar from '../../components/common/NavBar.tsx';
@@ -32,7 +32,8 @@ function Home() {
 
   const character = data?.character!!;
   const mission = data?.mission!!;
-  const characterImage = CharacterType[character.characterType];
+  const characterImage =
+    character.level < 5 ? CharacterLevel[character.level] : CharacterType[character.characterType];
 
   const handleNavigate = () => {
     navigation(navigations.CHAT, {
