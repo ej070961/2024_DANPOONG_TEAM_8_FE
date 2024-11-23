@@ -34,6 +34,8 @@ const ChatRoom = () => {
 export default ChatRoom;
 
 const ChatWrapper = styled.div`
+  width: 100vw;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -57,6 +59,6 @@ const ChatBubble = styled.div<{ $isUser: boolean }>`
   font: ${({ theme }) => theme.fonts.body_m_16px};
   padding: 15px 25px;
   border-radius: 26px;
-  max-width: 70vw;
+  max-width: 80%;
   word-wrap: break-word;
 `;
