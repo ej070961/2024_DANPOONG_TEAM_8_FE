@@ -36,6 +36,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
+  background: #ffffff;
+
   padding: 25px 0;
   padding-bottom: 90px;
   > img {

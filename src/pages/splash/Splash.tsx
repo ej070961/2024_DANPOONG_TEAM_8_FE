@@ -40,13 +40,14 @@ export default Splash;
 const Wrapper = styled.div`
   width: 100vw;
   max-width: 480px;
-
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-
+  justify-content: center;
   > img {
     width: 300px;
   }
+
+  background: #ffffff;
 `;
