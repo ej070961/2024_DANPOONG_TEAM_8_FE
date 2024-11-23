@@ -21,19 +21,21 @@ const CurrentGoal = () => {
       data!!.progressAreaType
     ];
 
+  const title = type ? `${type}기술 마스터하기` : '모든 기술 마스터!!!';
+
   return (
     <>
       <GoalContainer>
         <ContentContainer>
           <CurrentGoalLabel>현재 목표</CurrentGoalLabel>
-          <GoalTitle>{type}기술 마스터하기</GoalTitle>
+          <GoalTitle>{title}</GoalTitle>
         </ContentContainer>
         <ProgressbarContainer>
           <GoalProgressbar value={data!!.percentage} />
         </ProgressbarContainer>
       </GoalContainer>
       <MissionListText>자립목표 리스트</MissionListText>
-      <GoalList enabled={false} init={false} currentAreaType={data?.progressAreaType} />
+      <GoalList enabled={false} init={false} currentAreaType={data?.progressAreaType ? data?.progressAreaType : '' } />
     </>
   );
 };
