@@ -21,10 +21,9 @@ axiosInstance.interceptors.request.use((config) => {
 export const axiosFastInstance = axios.create({
   baseURL: import.meta.env.VITE_FAST_SERVER_URL,
   headers: {
-    accept: 'application/json',
     'Content-Type': 'application/json',
   },
-  //withCredentials: true,
+  withCredentials: true,
 });
 
 axiosFastInstance.interceptors.request.use((config) => {
