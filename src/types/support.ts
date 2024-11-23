@@ -3,4 +3,5 @@ export interface SupportProgram {
   supportType: string;
   supportTitle: string;
   supportSubTitle: string;
+  link?: string;
 }

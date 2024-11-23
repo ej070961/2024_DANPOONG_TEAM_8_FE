@@ -15,7 +15,11 @@ const SupportCard = ({ support }: SupportProgramProps) => {
         <SupportTextSmall>{support.supportSubTitle}</SupportTextSmall>
       </TextContainer>
       <ButtonContainer>
-        <CardButton label='바로가기' onClick={() => console.log('바로가ㅣ')} isDisabled={false} />
+        <CardButton
+          label='바로가기'
+          onClick={() => window.open(support.link!!, '_blank', 'noopener,noreferrer')}
+          isDisabled={false}
+        />
       </ButtonContainer>
     </MissionContainer>
   );
