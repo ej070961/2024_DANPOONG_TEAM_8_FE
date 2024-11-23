@@ -15,19 +15,19 @@ const SupportPanels = ({ value }: PanelsProps) => {
         <SupportList />
       </SupportPanel>
       <SupportPanel index={1} value={value}>
-        <SupportList />
+        <SupportList supportType='경제' />
       </SupportPanel>
       <SupportPanel index={2} value={value}>
-        <SupportList />
+        <SupportList supportType='주거' />
       </SupportPanel>
       <SupportPanel index={3} value={value}>
-        <SupportList />
+        <SupportList supportType='진로' />
       </SupportPanel>
       <SupportPanel index={4} value={value}>
-        <SupportList />
+        <SupportList supportType='법률' />
       </SupportPanel>
       <SupportPanel index={5} value={value}>
-        <SupportList />
+        <SupportList supportType='건강' />
       </SupportPanel>
     </SupportPanelsContainer>
   );

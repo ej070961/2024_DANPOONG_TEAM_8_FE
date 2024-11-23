@@ -2,10 +2,18 @@ import styled from 'styled-components';
 import { supportPrograms } from '../../apis/mocks/supportPrograms.ts';
 import SupportCard from './SupportCard.tsx';
 
-const SupportList = () => {
+interface SupportListProps {
+  supportType?: string;
+}
+
+const SupportList = ({ supportType }: SupportListProps) => {
+  const data = supportType
+    ? supportPrograms.filter((support) => support.supportType === supportType)
+    : supportPrograms;
+
   return (
     <SupportListContainer>
-      {supportPrograms.map((support) => (
+      {data.map((support) => (
         <SupportCard key={support.id} support={support} />
       ))}
     </SupportListContainer>
