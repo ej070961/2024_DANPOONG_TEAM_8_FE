@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import BackToolbar from '../../components/common/BackToolbar.tsx';
-import slime from '../../assets/images/slime.png';
+import slime from '/src/assets/images/complete-slime.png';
 import CustomButton from '../../components/common/CustomButton.tsx';
 import { useNavigate } from 'react-router-dom';
 
@@ -60,6 +60,7 @@ const TextLarge = styled.div`
 const TextSmall = styled.div`
   font: ${({ theme }) => theme.fonts.body_m_16px};
   color: ${({ theme }) => theme.colors.gray500};
+  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
