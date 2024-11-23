@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import ChatRoom from '../../components/chat/ChatRoom.tsx';
 import BackToolbar from '../../components/common/BackToolbar.tsx';
 import { useLocation } from 'react-router-dom';
-import chatbotBottomBg from '../../assets/svg/chatbot_bottom_bg.svg';
+import chatbotBottomBg from '../../assets/images/new-bg.png';
 import chatbotBg from '../../assets/images/chatbot_bg.png';
 
 const ChatbotPage = () => {
@@ -22,6 +22,7 @@ const ChatbotPage = () => {
 export default ChatbotPage;
 
 const ChatbotContainer = styled.div`
+  position: relative;
   background-image: url(${chatbotBg});
   background-size: cover;
   display: flex;
