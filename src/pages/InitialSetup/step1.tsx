@@ -1,6 +1,6 @@
 //어떤 사람인지 선택하는 화면
 import styled, { keyframes } from 'styled-components';
-import Header from '../../components/InitialSetup/Header';
+import Header from '../../components/initialSetup/Header';
 import EggPng from '../../assets/images/egg.png';
 import Button from '../../components/common/Button';
 import { useState } from 'react';

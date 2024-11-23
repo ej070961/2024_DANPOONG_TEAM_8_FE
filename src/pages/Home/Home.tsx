@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import BackgroundImg from '../../assets/images/home_bg.png';
-import MissionInfo from '../../components/Home/MissionInfo.tsx';
-import ChatIcon from '../../assets/icon/chat-icon';
+import MissionInfo from '../../components/home/MissionInfo.tsx';
+import ChatIcon from '../../assets/icon/chat-icon.tsx';
 import ChatIntroSvg from '../../assets/svg/chat-intro.svg?react';
 import StarSvg from '../../assets/svg/star.svg?react';
 import PolygonSvg from '../../assets/svg/polygon.svg?react';

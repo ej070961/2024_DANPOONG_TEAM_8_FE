@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/common/Button';
 import styled from 'styled-components';
 
-import StatusBar from '../components/Onboarding/StatusBar';
+import StatusBar from '../components/onboarding/StatusBar';
 
 interface LayoutProps {
   stepIndex: number;

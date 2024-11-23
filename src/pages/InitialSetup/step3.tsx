@@ -1,6 +1,6 @@
 //어떤 사람인지 선택하는 화면
 import styled from 'styled-components';
-import Header from '../../components/InitialSetup/Header';
+import Header from '../../components/initialSetup/Header';
 import CheckGuide from '../../components/goal/CheckGuide';
 import CheckCardList from '../../components/goal/CheckCardList';
 import { useLocation } from 'react-router-dom';
