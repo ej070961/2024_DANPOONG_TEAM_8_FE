@@ -91,7 +91,7 @@ function App() {
           element: <Auth />,
         },
         {
-          path: navigations.ANALYSISRESULT,
+          path: `${navigations.ANALYSISRESULT}/:checkListId`,
           element: <AnalysisResult />,
         },
         {

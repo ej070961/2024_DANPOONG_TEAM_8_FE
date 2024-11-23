@@ -35,11 +35,7 @@ const CheckCardList = ({ type, areaId }: { type: string; areaId: string }) => {
 
     if (res) {
       console.log(res);
-      navigate('/analysis-result', {
-        state: {
-          checkListId: res.id,
-        },
-      });
+      navigate(`/analysis-result/${res.id}`);
     }
   };
   return (
