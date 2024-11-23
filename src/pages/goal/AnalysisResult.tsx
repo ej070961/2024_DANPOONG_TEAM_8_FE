@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import AIResultSvg from '../../assets/svg/ai-result.svg?react';
 import ArrowBottomIcon from '../../assets/svg/arrow-bottom.svg?react';
@@ -15,11 +15,10 @@ function AnalysisResult() {
   const [detailData, setDetailData] = useState('');
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const { checkListId } = location.state;
+  const { checkListId } = useParams() as { checkListId: string };
 
   const { isLoading, data } = useQuery({
-    queryKey: ['getAnalysisResult'],
+    queryKey: ['getAnalysisResult', checkListId],
     queryFn: () => getCheckListAnalysisResult(checkListId),
   });
 
