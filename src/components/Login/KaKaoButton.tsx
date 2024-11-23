@@ -4,7 +4,11 @@ import { kakaoLogin } from '../../apis/user';
 function KaKaoButton() {
   const handleLogin = async () => {
     const res = await kakaoLogin();
-    window.location.href = res.location;
+    if (res) {
+      window.location.href = res.location;
+    } else {
+      alert('잠시후 다시 시도해주세요.');
+    }
   };
   return (
     <Container onClick={handleLogin}>
