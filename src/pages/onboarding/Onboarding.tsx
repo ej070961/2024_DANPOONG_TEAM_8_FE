@@ -4,9 +4,16 @@ import ObFirstPng from '../../assets/images/ob-first.png';
 import ObSecondPng from '../../assets/images/ob-second.png';
 import ObThirdPng from '../../assets/images/ob-third.png';
 import ObFourthPng from '../../assets/images/ob-fourth.png';
+import { useEffect } from 'react';
 function Onboarding() {
   const [searchParams] = useSearchParams();
   const step = searchParams.get('step') || '1';
+
+  useEffect(() => {
+    if (localStorage.getItem('init')) {
+      localStorage.removeItem('init');
+    }
+  }, []);
 
   return (
     <>
