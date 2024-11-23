@@ -74,6 +74,7 @@ const MissionCompletionContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   margin-top: 74px;
+  padding: 0 16px;
 `;
 
 const ButtonContainer = styled.div`

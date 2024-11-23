@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AreaType } from '../../@type/goal.ts';
+import { AreaDescription, AreaType } from '../../@type/goal.ts';
 
 interface ConfirmContentProps {
   goalType: string;
@@ -12,11 +12,7 @@ const ConfirmContent = ({ goalType, image }: ConfirmContentProps) => {
       <TextBold>해당 영역을 목표로 지정할까요?</TextBold>
       <Image src={image} />
       <TextBold style={{ marginTop: '40px' }}>{AreaType[goalType]} 마스터하기</TextBold>
-      <TextMedium>
-        일상생활에 필요한 요리, 집 관리, 의복 관리 등의
-        <br />
-        기술을 습득할 수 있는 미션이 주어져요
-      </TextMedium>
+      <TextMedium>{AreaDescription[goalType]}</TextMedium>
     </ConfirmContentContainer>
   );
 };
@@ -47,4 +43,6 @@ const TextMedium = styled.span`
   font: ${({ theme }) => theme.fonts.body_m_16px};
   color: ${({ theme }) => theme.colors.gray500};
   text-align: center;
+  display: block;
+  white-space: pre-line;
 `;
