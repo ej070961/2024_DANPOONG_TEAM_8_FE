@@ -11,24 +11,16 @@ interface MissionProps {
   missionType: string;
   missionName: string;
   isComplete: boolean;
-  isHome?: boolean;
   mission: OnGoingMission | undefined;
 }
 
-const MissionCard = ({
-  id,
-  missionType,
-  missionName,
-  isComplete,
-  isHome,
-  mission,
-}: MissionProps) => {
+const MissionCard = ({ id, missionType, missionName, isComplete, mission }: MissionProps) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const label = isComplete ? '완료' : '기록하기';
+  const label = isComplete ? '완료' : '완료하기';
 
   const handleNavigateDetailPage = () => {
     navigate(`${navigations.MISSION_COMPLETE_DETAIL}/${id}`, { state: { missionName } });
@@ -43,11 +35,7 @@ const MissionCard = ({
       <MissionType>{missionType}</MissionType>
       <MissionTitle>{missionName}</MissionTitle>
       <ButtonContainer>
-        <CardButton
-          isDisabled={isComplete}
-          label={isHome ? '완료하기' : label}
-          onClick={handleNavigateWritePage}
-        />
+        <CardButton isDisabled={isComplete} label={label} onClick={handleNavigateWritePage} />
       </ButtonContainer>
     </MissionContainer>
   );
