@@ -3,12 +3,18 @@ import styled from 'styled-components';
 interface MissionButtonProps {
   label: string;
   isDisabled: boolean;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const CardButton = ({ label, isDisabled, onClick }: MissionButtonProps) => {
+  // 버튼 클릭 시 이벤트 버블링 중단
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation(); // 부모 요소로의 이벤트 전파 중단
+    onClick(e); // 실제 클릭 이벤트 실행
+  };
+
   return (
-    <Button $isComplete={isDisabled} onClick={onClick} disabled={isDisabled}>
+    <Button $isComplete={isDisabled} onClick={handleClick} disabled={isDisabled}>
       {label}
     </Button>
   );

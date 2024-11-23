@@ -1,6 +1,6 @@
 //어떤 사람인지 선택하는 화면
 import styled from 'styled-components';
-import Header from '../../components/InitialSetup/Header';
+import Header from '../../components/initialSetup/Header';
 import Description from '../../components/goal/Description';
 import GoalList from '../../components/common/GoalList';
 function Step2() {

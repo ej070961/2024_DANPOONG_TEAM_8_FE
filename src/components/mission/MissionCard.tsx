@@ -5,6 +5,7 @@ import CardButton from '../common/CardButton.tsx';
 import GuideModal from './GuideModal.tsx';
 import { useState } from 'react';
 import { OnGoingMission } from '../../@type/mission.ts';
+import CompleteBottomSheet from './CompleteBottomSheet.tsx';
 
 interface MissionProps {
   id: number;
@@ -20,30 +21,52 @@ const MissionCard = ({ id, missionType, missionName, isComplete, mission }: Miss
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [openBottomSheet, setOpenBottomSheet] = useState(false);
+
   const label = isComplete ? '완료' : '완료하기';
 
   const handleNavigateDetailPage = () => {
     navigate(`${navigations.MISSION_COMPLETE_DETAIL}/${id}`, { state: { missionName } });
   };
 
-  const handleNavigateWritePage = () => {
-    navigate(`${navigations.MISSION_RECORD_WRITE}/${id}`);
+  // 버튼 클릭: Bottom Sheet 열기
+  const handleNavigateWritePage = (e: React.MouseEvent) => {
+    e.stopPropagation(); // 부모 클릭 이벤트 중단
+    setOpenBottomSheet(true);
+  };
+
+  // Bottom Sheet 닫기
+  const handleCloseBottomSheet = () => {
+    setOpenBottomSheet(false);
   };
   return (
-    <MissionContainer onClick={isComplete ? handleNavigateDetailPage : handleOpen}>
-      <GuideModal open={isComplete ? false : open} handleClose={handleClose} mission={mission!!} />
-      <MissionType>{missionType}</MissionType>
-      <MissionTitle>{missionName}</MissionTitle>
-      <ButtonContainer>
-        <CardButton isDisabled={isComplete} label={label} onClick={handleNavigateWritePage} />
-      </ButtonContainer>
-    </MissionContainer>
+    <>
+      <MissionContainer onClick={isComplete ? handleNavigateDetailPage : handleOpen}>
+        <GuideModal
+          open={isComplete ? false : open}
+          handleClose={handleClose}
+          mission={mission!!}
+        />
+        <MissionType>{missionType}</MissionType>
+        <MissionTitle>{missionName}</MissionTitle>
+        <ButtonContainer>
+          <CardButton isDisabled={isComplete} label={label} onClick={handleNavigateWritePage} />
+        </ButtonContainer>
+      </MissionContainer>
+
+      <CompleteBottomSheet
+        isOpen={openBottomSheet}
+        missionId={id}
+        onClose={handleCloseBottomSheet}
+      />
+    </>
   );
 };
 
 export default MissionCard;
 
 const MissionContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;

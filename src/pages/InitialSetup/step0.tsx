@@ -1,6 +1,6 @@
 //어떤 사람인지 선택하는 화면
 import styled from 'styled-components';
-import Header from '../../components/InitialSetup/Header';
+import Header from '../../components/initialSetup/Header';
 import { useState } from 'react';
 import Loader from '../../components/common/Loader';
 import Slime2 from '../../assets/images/slime2.png';

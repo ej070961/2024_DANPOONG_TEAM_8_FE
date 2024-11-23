@@ -3,7 +3,7 @@ import LogoSvg from '../../assets/svg/logo.svg?react';
 import BackgroundSVg from '../../assets/svg/login-background.svg?react';
 import Slime from '../../assets/images/slime2.png';
 import CharactersPng from '../../assets/images/characters.png';
-import KaKaoButton from '../../components/Login/KaKaoButton';
+import KaKaoButton from '../../components/login/KaKaoButton';
 function Login() {
   return (
     <LoginContainer>
