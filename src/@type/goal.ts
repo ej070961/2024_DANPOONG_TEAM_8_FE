@@ -3,6 +3,7 @@ export const AreaType: Record<string, string> = {
   SELF_MANAGEMENT: '자기 관리',
   MONEY_MANAGEMENT: '돈 관리',
   SOCIETY: '사회 진출',
+  ALL: '모든 기술 마스터 !!!',
 };
 
 export const AreaDescription: Record<string, string> = {

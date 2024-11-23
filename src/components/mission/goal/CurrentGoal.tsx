@@ -16,12 +16,10 @@ const CurrentGoal = () => {
     return <Loading />;
   }
 
-  const type =
-    AreaType[
-      data!!.progressAreaType
-    ];
-
-  const title = type ? `${type}기술 마스터하기` : '모든 기술 마스터!!!';
+  const title =
+    data!!.progressAreaType !== 'ALL'
+      ? `${AreaType[data!!.progressAreaType]}기술 마스터하기`
+      : '모든 기술 마스터!!!';
 
   return (
     <>
@@ -35,7 +33,11 @@ const CurrentGoal = () => {
         </ProgressbarContainer>
       </GoalContainer>
       <MissionListText>자립목표 리스트</MissionListText>
-      <GoalList enabled={false} init={false} currentAreaType={data?.progressAreaType ? data?.progressAreaType : '' } />
+      <GoalList
+        enabled={false}
+        init={false}
+        currentAreaType={data?.progressAreaType ? data?.progressAreaType : ''}
+      />
     </>
   );
 };
