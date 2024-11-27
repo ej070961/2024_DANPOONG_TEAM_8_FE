@@ -5,9 +5,13 @@ import ObSecondPng from '../../assets/images/ob-second.png';
 import ObThirdPng from '../../assets/images/ob-third.png';
 import ObFourthPng from '../../assets/images/ob-fourth.png';
 import { useEffect } from 'react';
+import { useAuthStore } from '../../store/useAuthStore';
+import { navigations } from '../../constant/navigations';
 function Onboarding() {
   const [searchParams] = useSearchParams();
   const step = searchParams.get('step') || '1';
+
+  const { isLoggedIn } = useAuthStore();
 
   useEffect(() => {
     if (localStorage.getItem('init')) {
@@ -49,7 +53,7 @@ function Onboarding() {
           title={`자립 지원정보를 \n한눈에 확인해보세요`}
           description={`청년들의 주거, 교육, 생활비 등 \n다양한 지원정보를 한눈에 쉽게 확인 가능해요`}
           stepIndex={4}
-          navigatePath='/home'
+          navigatePath={isLoggedIn ? navigations.HOME : navigations.LOGIN}
           imagePath={ObFourthPng}
         />
       )}
