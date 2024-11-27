@@ -27,7 +27,7 @@ function Auth() {
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
         if (hasCharacter === 'true') {
-          navigate(navigations.ONBOARDING);
+          navigate(navigations.HOME);
         } else {
           navigate(navigations.INITIALSETUP);
           localStorage.setItem('init', 'True');

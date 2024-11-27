@@ -3,13 +3,10 @@ import LogoSvg from '../../assets/svg/logo.svg?react';
 import Slime from '../../assets/images/slime2.png';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../store/useAuthStore';
 import { navigations } from '../../constant/navigations';
 function Splash() {
   const [opacity, setOpacity] = useState(100);
   const navigate = useNavigate();
-
-  const { isLoggedIn } = useAuthStore();
 
   useEffect(() => {
     if (opacity > 0) {
@@ -20,11 +17,8 @@ function Splash() {
       return () => clearTimeout(timer); // 타이머 정리
     } else {
       // 페이지 이동
-      if (isLoggedIn) {
-        navigate(navigations.HOME);
-      } else {
-        navigate(navigations.LOGIN);
-      }
+
+      navigate(navigations.ONBOARDING);
     }
   }, [opacity]);
 
